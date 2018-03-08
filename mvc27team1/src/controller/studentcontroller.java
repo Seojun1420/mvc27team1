@@ -16,7 +16,7 @@ public class studentcontroller extends HttpServlet {
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//1. request 贸府
+		//1. request 贸府\
 		//2. 葛胆(DAO) 龋免
 		//3.  redi
 	}
