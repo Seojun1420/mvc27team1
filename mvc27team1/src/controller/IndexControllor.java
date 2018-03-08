@@ -9,9 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/Index")
 public class IndexControllor extends HttpServlet {
-
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getRequestDispatcher("/WEB-INF/Index/index.jsp").forward(request, response);
 	}
-
 }

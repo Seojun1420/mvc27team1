@@ -10,6 +10,5 @@
 </head>
 <body>
 	<h1> mvc27team1 </h1>
-	
 </body>
 </html>
