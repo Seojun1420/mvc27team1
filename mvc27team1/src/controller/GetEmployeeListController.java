@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Employee;
 import model.EmployeeDao;
+import java.util.ArrayList;
+
+
 @WebServlet("/getEmployeeList.jjdev")
 public class GetEmployeeListController extends HttpServlet {
 
@@ -17,8 +20,9 @@ public class GetEmployeeListController extends HttpServlet {
 		// EmployeeDao
 		// request에 속성추가
 		// forward
-		EmployeeDao employee = new EmployeeDao();
-		employee.selectEmployee();
+		EmployeeDao employeeDao = new EmployeeDao();
+		ArrayList<Employee> list = employeeDao.selectEmployee();
+		request.setAttribute("Employee", list);
 		request.getRequestDispatcher("/WEB-INF/views/getEmployeeList.jsp").forward(request, response);
 	}
 }

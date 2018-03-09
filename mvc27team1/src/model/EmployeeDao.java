@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Connection;
 import java.util.ArrayList;
-
+import driver.Driver;
 public class EmployeeDao {
 	Connection connection = null;
 	PreparedStatement statement = null;
@@ -23,18 +23,11 @@ public class EmployeeDao {
 		System.out.println("리스트 메서드 실행");
 		
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			String jdbcDriver = "jdbc:mysql://localhost:3306/mvc?useUnicode=true&characterEncoding=utf-8";
-			String dbId = "root";
-			String dbPw = "java0000";
-			String sql = "SELECT employee_no,employee_id,employee_pw FROM employee";
-			//mysql 연결을 위해 ip, port, dbid, dbpw, db명 입력
-			
-			connection = DriverManager.getConnection(jdbcDriver, dbId, dbPw);
-			/* DriverManger 클래스의 getConnection 메서드 호출한다 .
-		     * 이때  jdbcDriver, dbId, dbPw를 매개변수 값으로 보낸다.
+			Driver.dirverDbcon();
+			/* 
+		     * db연결을 위해 Driver 클래스의 dirverDbcon 메서드 호출한다 .
 		     */
-			
+			String sql = "SELECT employee_no,employee_id,employee_pw FROM employee";
 			statement = connection.prepareStatement(sql);			
 			//connection 객체 참조 변수에 할당된 참조값을 찾아가 prepareStatement메서드를실행하고 준비된 쿼리문을 입력한다.	
 			
@@ -73,17 +66,12 @@ public class EmployeeDao {
 		 * void 타입이므로 return은 없고, Employee 클래스에 셋팅된 값을 매개변수값으로 받아온다.
 		 */	
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			String jdbcDriver = "jdbc:mysql://localhost:3306/mvc?useUnicode=true&characterEncoding=utf-8";
-			String dbId = "root";
-			String dbPw = "java0000";
-			String sql = "INSERT INTO employee VALUES(?,?,?)";
-			//mysql 연결을 위해 ip, port, dbid, dbpw, db명 입력
-			connection = DriverManager.getConnection(jdbcDriver, dbId, dbPw);			
-			/* DriverManger 클래스의 getConnection 메서드 호출한다 .
-		     * 이때  jdbcDriver, dbId, dbPw를 매개변수 값으로 보낸다.
+			Driver.dirverDbcon();
+			/* 
+		     * db연결을 위해 Driver 클래스의 dirverDbcon 메서드 호출한다 .
 		     */
 			
+			String sql = "INSERT INTO employee VALUES(?,?,?)";
 			statement = connection.prepareStatement(sql);
 			//connection 객체 참조 변수에 할당된 참조값을 찾아가 prepareStatement메서드를실행하고 준비된 쿼리문을 입력한다.	
 

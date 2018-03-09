@@ -1,6 +1,5 @@
 <!-- mvc27team1 도정만  -->
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="model.EmployeeDao" %>
 <%@ page import="model.Employee" %>
 <%@ page import="java.util.ArrayList" %>
 <!DOCTYPE html>
@@ -19,11 +18,8 @@
 			</tr>
 		</thead>
 <%
-	EmployeeDao employeeDao = new EmployeeDao();
-
-	ArrayList<Employee> list = employeeDao.selectEmployee();
-	for(Employee employee : list) {
-		
+ ArrayList<Employee> list = (ArrayList<Employee>) request.getAttribute("Employee");
+	for(Employee employee : list) {		
 %>
 			
 		<tbody>
@@ -35,7 +31,7 @@
 		</tbody>				
 <% 			
 }
-%>
+%>		
 	</table>
 </body>
 </html>
