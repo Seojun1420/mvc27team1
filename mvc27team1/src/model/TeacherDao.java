@@ -35,7 +35,6 @@ public class TeacherDao {
 		}
 	}
 	public ArrayList selectTeacher() {
-		Teacher teacher =null;
 		ArrayList<Teacher> arrayList = new ArrayList<Teacher>();
 		String sql = "SELECT * FROM teacher";
 		try {
@@ -47,7 +46,7 @@ public class TeacherDao {
 			statement=connection.prepareStatement(sql);
 			resultSet=statement.executeQuery();
 			while(resultSet.next()) {
-				teacher = new Teacher();
+				Teacher	teacher = new Teacher();
 				teacher.setNum(resultSet.getInt("teacher_no"));
 				teacher.setId(resultSet.getString("teacher_id"));
 				teacher.setPw(resultSet.getString("teacher_pw"));

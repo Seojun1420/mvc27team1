@@ -11,7 +11,6 @@ import model.Teacher;
 import model.TeacherDao;
 
 @WebServlet("/addTeacher.jjdev")
-
 public class AddTeacherController extends HttpServlet {
 	private TeacherDao teacherDao;
 
