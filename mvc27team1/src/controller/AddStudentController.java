@@ -7,8 +7,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet({"/addStudent.jjdev" })
-public class studentcontroller extends HttpServlet {
+import model.Student;
+import model.StudentDao;
+
+@WebServlet("/addStudent.jjdev")
+public class AddStudentController extends HttpServlet {
 	// student 입력폼 요청
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getRequestDispatcher("/WEB-INF/views/addStudent.jsp").forward(request, response);
@@ -17,12 +20,14 @@ public class studentcontroller extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//1.request.처리 
-		String id=request.getParameter("StudentId");
-		String pw=request.getParameter("StudentPw");
-		System.out.println(id+"입력된아이디");
-		
+		String StudentId = request.getParameter("StudentId");
+		String StudentPw = request.getParameter("StudentPw");
+		Student student = new Student();
+		// guest setter 호출
+		StudentDao stundetn = new StudentDao();
 		//2.모델(DAO) 호출
 		//3.redirect(다른 controller호출)
+		response.sendRedirect("/getStudentList.jjdev");
 	}
 
 }

@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -46,7 +45,7 @@
 <body>
 	<h1>AddStudent</h1>
 
-<form id="myForm" method="post" action="<%=request.getContextPath()%>/addStudent.jjdev" class="form-horizontal"class="form col-md-12 center-block">
+<form id="myForm" method="post" action="<%=request.getContextPath()%>/addStudent.jjdev">
 	<div id="loginModal" class="¸ð´Þ ¼î" tabindex="-2" role="dialog" aria-hidden="true">
 	<div class="modal-dialog">
 		  <div class="modal-content">
