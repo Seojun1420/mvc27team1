@@ -1,8 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
+<!-- mvc27team1 ë„ì •ë§Œ  -->
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>Insert title here</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 	
@@ -13,27 +14,27 @@
 		.panel{margin-bottom:0 !important;}
 		h2{text-align: center;}
 		.input-group{margin-bottom: 5px !important;}
-		.error{text-align: center; color: red; font-size: 30px;}
+		.error{text-align: center; color: red; font-size: 3rem;}
 	</style>
 	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script>
 		$(document).ready(function() {
-			//Æû À¯È¿¼º °Ë»ç ÈÄ ÆûÀ» submit
+			//í¼ ìœ íš¨ì„± ê²€ì‚¬ í›„ í¼ì„ submit
 			
 			var uId = ('.addEmployeeId'); 
 			$('.btn').click(function(){
 				if($('.addEmployeeId').val().length < 4) {
-					$('.error').text("¾ÆÀÌµğ 4ÀÚÀÌ»óÀÔ·ÂÇÏ½Ã¿À");
+					$('.error').text("ì•„ì´ë”” 4ìì´ìƒì…ë ¥í•˜ì‹œì˜¤");
 					$('.addEmployeeId').focus();
 					return;
 				}else if($('.addEmployeePw').val().length < 4) {
-					$('.error').text("ºñ¹Ğ¹øÈ£ 4ÀÚÀÌ»óÀÔ·ÂÇÏ½Ã¿À");
+					$('.error').text("ë¹„ë°€ë²ˆí˜¸ 4ìì´ìƒì…ë ¥í•˜ì‹œì˜¤");
 					$('.addEmployeePw').focus();
 					return;
 				}else if($('.addEmployeePw').val() != $('#addEmployeePwCheck').val()) {
-					//addEmployeePw ¾ÈÀÇ value°ªÀ» ºñ±³ÇØ¾ßÇÔ
-					$('.error').text("ÀÔ·ÂÇÏ½Å ºñ¹Ğ¹øÈ£¿Í µ¿ÀÏÇÏÁö ¾Ê½À´Ï´Ù.");
+					//addEmployeePw ì•ˆì˜ valueê°’ì„ ë¹„êµí•´ì•¼í•¨
+					$('.error').text("ì…ë ¥í•˜ì‹  ë¹„ë°€ë²ˆí˜¸ì™€ ë™ì¼í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 					$('.addEmployeePwCheck').focus();
 					return;
 				}else {
@@ -64,14 +65,14 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-sm-3 control-label for=pwCheck">employee_pwÈ®ÀÎ : </label>
+						<label class="col-sm-3 control-label for=pwCheck">employee_pwí™•ì¸ : </label>
 						<div class="col-sm-9">
 							<input type="text" class="addEmployeePwCheck form-control" id="addEmployeePwCheck" name="addEmployeePwCheck">
 						</div>
 					</div>
 					<div id="error" class="error"></div>
 					<div>
-						<button type="button" class="btn btn-primary btn-block">Á÷¿ø ÀÔ·Â</button>
+						<button type="button" class="btn btn-primary btn-block">ì§ì› ì…ë ¥</button>
 					</div>									
 				</div>	
 				</form>				

@@ -1,3 +1,4 @@
+//mvc27team1 µµÁ¤¸¸
 package controller;
 
 import java.io.IOException;
@@ -34,7 +35,7 @@ public class AddEmployeeController extends HttpServlet {
 		this.employeeDao = new EmployeeDao();
 		employeeDao.insertEmployee(employee);
 		
-		response.sendRedirect("./getEmployeeList.jjdev");
+		response.sendRedirect(request.getContextPath() + "/getEmployeeList.jjdev");
 	}
 
 }
