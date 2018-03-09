@@ -79,7 +79,7 @@ public class EmployeeDao {
 			statement.setString(2, employee.getEmployee_id());
 			statement.setString(3, employee.getEmployee_pw());
 			/*
-		     * anaunseo 객체참조변수에 할당된 참조값을 찾아가 getAnaunseoId, getAnaunseoName, getAnaunseoAge 메서드를 호출후
+		     * employee 객체참조변수에 할당된 참조값을 찾아가 getEmployee_no, getEmployee_id, getEmployee_pw 메서드를 호출후
 		     * return 받은 값들을 statment 객체 참조 변수에 할당된 참조값을 찾아가 PreparedStatement 클래스의 setInt, setString 메서드를
 		     * 호출 후 매개변수값으로 지정한다.
 		     * 쿼리 완성!
