@@ -1,8 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>addStudent</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -20,20 +20,20 @@
 	
 	
 	</style>
-	<script>
+	<script> /* jQuery ì²˜ë¦¬ë¶€ë¶„ */
 		$(document).ready(function(){
 			$('#btn').click(function(){
 	            if($('#StudentId').val().length < 6) {
-	            	$('#Helper').text("¾ÆÀÌµğ 6ÀÚÀÌ»óÀÔ·ÂÇÏ½Ã¿À");
+	            	$('#Helper').text("ì•„ì´ë”” 6ìì´ìƒì…ë ¥í•˜ì‹œì˜¤");
 	            	return;
 	            }else if($('#StudentPw').val().length < 8) {
-	            	$('#Helper').text("ºñ¹Ğ¹øÈ£ 8ÀÚÀÌ»óÀÔ·ÂÇÏ½Ã¿À");
+	            	$('#Helper').text("ë¹„ë°€ë²ˆí˜¸ 8ìì´ìƒì…ë ¥í•˜ì‹œì˜¤");
 	            	return;
 				}else if($('#StudentPwCheck').val().length <8){
-					$('#Helper').text("È®ÀÎºñ¹Ğ¹øÈ£¸¦  8ÀÚÀÌ»ó ÀÔ·ÂÇØÁÖ¼¼¿ä");
+					$('#Helper').text("í™•ì¸ë¹„ë°€ë²ˆí˜¸ë¥¼  8ìì´ìƒ ì…ë ¥í•´ì£¼ì„¸ìš”");
 					return;
 				}else if($('#StudentPw').val() != $('#StudentPwCheck').val()) {
-		               $('#Helper').text("ºñ¹Ğ¹øÈ£°¡ ¸ÂÁö ¾Ê½À´Ï´Ù.");
+		               $('#Helper').text("ë¹„ë°€ë²ˆí˜¸ê°€ ë§ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 		               return;
 				}else{
 					$('#myForm').submit();
@@ -43,39 +43,40 @@
 	</script>
 </head>
 <body>
-	<h1>AddStudent</h1>
+	<h1>AddStudent</h1> <!-- h1 ì²˜ë¦¬  -->
+	<!-- Form & ì•„ì´ë”” ì…ë ¥í•˜ê³  ë¹„ë²ˆ ì…ë ¥í•´ì„œ í•™ìƒ ì¶”ê°€ë²„íŠ¼ ëˆ„ë¥¼ì‹œ MySqlë¡œ ë„˜ì–´ê°€ë©° StudentListë¡œ ë„˜ì–´ê°„ë‹¤  -->
 	<form id="myForm" method="post" action="./addStudent.jjdev"class="form-horizontal">
-		<div id="loginModal" class="¸ğ´Ş ¼î" tabindex="-2" role="dialog" aria-hidden="true">
+		<div id="loginModal" class="ëª¨ë‹¬ ì‡¼" tabindex="-2" role="dialog" aria-hidden="true">
 		<div class="modal-dialog">
 			  <div class="modal-content">
 			  <div class="modal-header">
-			    <button type="button" class="close" data-dismiss="¸ğ´Ş " aria-hidden="true">¡¿</button>
+			    <button type="button" class="close" data-dismiss="ëª¨ë‹¬ " aria-hidden="true">Ã—</button>
 			      <h2 class="text-center">AddStudent</h2>
 			       <div class="modal-body">
 			      <form class="form col-md-15 center-block">
 						<div class="col-sm-10"></div>
 						<div class="col-sm-14">
 				<div class="form-group">
-					<label class="col-sm-3 control-label">StudentId</label>
+					<label class="col-sm-3 control-label">í•™ìƒ ì•„ì´ë”” </label>
 					<div class="col-sm-9">
-						<input type="text" id="StudentId" name="StudentId"class="form-control" placeholder="¾ÆÀÌµğ ÀÔ·ÂÇÏ½Ã¿À."> 
+						<input type="text" id="StudentId" name="StudentId"class="form-control" placeholder="ì•„ì´ë”” ì…ë ¥í•˜ì‹œì˜¤."> 
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label">Student_Pw</label>
+					<label class="col-sm-3 control-label">í•™ìƒ ë¹„ë²ˆ</label>
 					<div class="col-sm-9">
-					<input type="password"id="StudentPw" name="StudentPw" class="form-control" placeholder="ÆĞ½º¿öµå ÀÔ·ÂÇÏ½Ã¿À."> 
+					<input type="password"id="StudentPw" name="StudentPw" class="form-control" placeholder="íŒ¨ìŠ¤ì›Œë“œ ì…ë ¥í•˜ì‹œì˜¤."> 
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label">Student_PwÈ®ÀÎ</label>
+					<label class="col-sm-3 control-label">í•™ìƒ ë¹„ë²ˆ í™•ì¸</label>
 					<div class="col-sm-9">
-						<input type="password"  id="StudentPwCheck" name="StudentPwCheck" class="form-control" placeholder="ÆĞ½º¿öµå¸¦ µğ½Ã È®ÀÎÇÏ¼¼¿ä">
+						<input type="password"  id="StudentPwCheck" name="StudentPwCheck" class="form-control" placeholder="íŒ¨ìŠ¤ì›Œë“œë¥¼ ë””ì‹œ í™•ì¸í•˜ì„¸ìš”">
 					</div>
 				</div>
 				<span id="Helper"></span>
 				<div style="text-align:center;">
-					<button id="btn" type="button" class="btn btn-primary btn-lg btn-block"> ÇĞ»ı Ãß°¡ </button>
+					<button id="btn" type="button" class="btn btn-primary btn-lg btn-block"> í•™ìƒ ì¶”ê°€ </button>
 				
 				</div>
 				
@@ -86,7 +87,7 @@
 				</div>
 				 <div class="modal-footer">
           <div class="col-md-12">
-          <button class="btn" data-dismiss="¸ğ´Ş" aria-hidden="true">Ãë¼Ò</button>
+          <button class="btn" data-dismiss="ëª¨ë‹¬" aria-hidden="true">ì·¨ì†Œ</button>
 		  </div>
 			</div>
 			

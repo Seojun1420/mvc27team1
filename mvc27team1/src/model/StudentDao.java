@@ -3,24 +3,23 @@ package model;
 
 // 필요한 파일을  import 해준다
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-
 import driver.Driver;
 import model.Student;
 
 public class StudentDao {
+	
 	Connection connection = null;
 	PreparedStatement statement = null;
 	ResultSet resultSet = null;
 	
 	public void insertStudent(Student student) {
 		String sql = "INSERT INTO student VALUES (student_No,?,?)";
-		System.out.println("===== StudentList =====");
+		System.out.println("===== insert Student =====");
 		try {
 			Driver db = new Driver();
 			connection = db.dirverDbcon();
@@ -41,12 +40,31 @@ public class StudentDao {
 			e.printStackTrace();
 		}
 	}
-	/*public ArrayList selectStudent() {
-		
+	public ArrayList selectStudent() {
 		ArrayList<Student> arrayList = new ArrayList<Student>();
 		String sql = "SELECT * FROM student";
-		return array;
-	}*/
+		System.out.println("===== StudentList =====");
+		try {
+			Driver db = new Driver();
+			connection = db.dirverDbcon();
+			System.out.println(connection+"db연결");
+			statement = connection.prepareStatement(sql);
+			resultSet = statement.executeQuery();
+			while(resultSet.next()) {
+				Student student = new Student();
+				student.setNumber(resultSet.getInt("student_no"));
+				student.setId(resultSet.getString("student_id"));
+				student.setPassword(resultSet.getString("student_pw"));
+				arrayList.add(student);
+			}
+			
+		}catch(ClassNotFoundException e) {
+			e.printStackTrace();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return arrayList;
+	}
 	
 }
 		
