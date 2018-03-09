@@ -1,27 +1,21 @@
 package model;
 
 public class Student {
-	private int Student_No;
-	private String Student_Id;
-	private String Student_Pw;
-	public int getStudent_No() {
-		return Student_No;
+	private String Id;
+	private String Password;
+	public String getId() {
+		return Id;
 	}
-	public void setStudent_No(int student_No) {
-		Student_No = student_No;
+	public void setId(String id) {
+		Id = id;
 	}
-	public String getStudent_Id() {
-		return Student_Id;
+	public String getPassword() {
+		return Password;
 	}
-	public void setStudent_Id(String student_Id) {
-		Student_Id = student_Id;
+	public void setPassword(String password) {
+		Password = password;
 	}
-	public String getStudent_Pw() {
-		return Student_Pw;
-	}
-	public void setStudent_Pw(String student_Pw) {
-		Student_Pw = student_Pw;
-	}
+	
 	
 	
 	
