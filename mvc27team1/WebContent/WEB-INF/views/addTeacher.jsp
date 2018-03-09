@@ -9,33 +9,32 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<style>
 	body{
-	 background: url(http://www.timurtek.com/wp-content/uploads/2014/10/form-bg.jpg) no-repeat center center fixed; 
-  	-webkit-background-size: cover;
-
+	background: url(http://www.timurtek.com/wp-content/uploads/2014/10/form-bg.jpg) no-repeat center center fixed;
+	-webkit-background-size: cover;
   	background-size: cover;
-}
+  	}
 	
 	</style>
 	<script>
 		$(document).ready(function(){
 			$('#btn').click(function(){
-	            if($('#teacherId').val().length < 4) {
-	            	$('#banHelper').text("아이디 4자이상입력하시오");
-	            	return;
-	            }else if($('#teacherPw').val().length < 4) {
-	            	$('#banHelper').text("비밀번호 4자이상입력하시오");
-	            	return;
+				if($('#teacherId').val().length < 4) {
+					$('#banHelper').text("아이디 4자이상입력하시오");
+					return;
+				}else if($('#teacherPw').val().length < 4) {
+					$('#banHelper').text("비밀번호 4자이상입력하시오");
+					return;
 				}else if($('#teacherPwCheck').val().length <4){
 					$('#banHelper').text("확인비밀번호를 4자이상 입력해주세요");
 					return;
 				}else if($('#teacherPw').val() != $('#teacherPwCheck').val()) {
-		               $('#banHelper').text("비밀번호가 맞지 않습니다.");
-		               return;
+					$('#banHelper').text("비밀번호가 맞지 않습니다.");
+					return;
 				}else{
 					$('#myForm').submit();
-				}
-	         });
-	      });
+					}
+			});
+		});
 	</script>
 </head>
 <body>

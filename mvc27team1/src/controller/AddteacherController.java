@@ -12,7 +12,7 @@ import model.TeacherDao;
 
 
 @WebServlet("/addTeacher.jjdev")
-public class teacherController extends HttpServlet {
+public class AddteacherController extends HttpServlet {
 
 
 	//teacher 입력 폼
@@ -22,14 +22,15 @@ public class teacherController extends HttpServlet {
 
 	//teacher 입력
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String id=request.getParameter("teacherId");
-		String pw=request.getParameter("teacherPw");
-		System.out.println(id+"입력된아이디");
-		
-	
+		String teacherId = request.getParameter("teacherId");
+		String teacherPw = request.getParameter("teacherPw");
+		Teacher teacher = new Teacher();
+		TeacherDao teacherDao = new TeacherDao();
+		teacherDao.insertTeacher(teacher);
 		//1.request 처리
 		//2.모델 (DAO) 호출
 		//3.다른 controller 호출 (redirect)
+		response.sendRedirect("/getTeacherList.jjev");
 	}
 
 }
