@@ -69,8 +69,8 @@ public class EmployeeDao {
 	}
 	public void insertEmployee(Employee employee) {
 		/*
-		 * insertAnaunseo 메서드는 새로운 아나운서를 등록하는 메서드.
-		 * void 타입이므로 return은 없고, Anaunseo 클래스에 셋팅된 값을 매개변수값으로 받아온다.
+		 * insertEmployee 메서드는 새로운 아나운서를 등록하는 메서드.
+		 * void 타입이므로 return은 없고, Employee 클래스에 셋팅된 값을 매개변수값으로 받아온다.
 		 */	
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
