@@ -1,7 +1,6 @@
 //mvc27team1 도정만
 package model;
 
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -62,7 +61,7 @@ public class EmployeeDao {
 	}
 	public void insertEmployee(Employee employee) {
 		/*
-		 * insertEmployee 메서드는 새로운 아나운서를 등록하는 메서드.
+		 * insertEmployee 메서드는 새로운 직원를 등록하는 메서드.
 		 * void 타입이므로 return은 없고, Employee 클래스에 셋팅된 값을 매개변수값으로 받아온다.
 		 */	
 		try {
