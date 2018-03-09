@@ -9,10 +9,10 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<style>
 	body{
-	background: url(http://www.timurtek.com/wp-content/uploads/2014/10/form-bg.jpg) no-repeat center center fixed;
-	-webkit-background-size: cover;
-  	background-size: cover;
-  	}
+		background: url(http://www.timurtek.com/wp-content/uploads/2014/10/form-bg.jpg) no-repeat center center fixed;
+		-webkit-background-size: cover;
+	  	background-size: cover;
+	  	}
 	
 	</style>
 	<script>
@@ -51,7 +51,7 @@
 			<div class="form-group">
 				<label class="col-sm-3 control-label">teacher_pw</label>
 				<div class="col-sm-9">
-				<input type="password" id="teacherPw" name="teacherPw" class="form-control" placeholder="PW입력"> 
+					<input type="password" id="teacherPw" name="teacherPw" class="form-control" placeholder="PW입력"> 
 				</div>
 			</div>
 			<div class="form-group">

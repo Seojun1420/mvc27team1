@@ -1,12 +1,39 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@page import="java.util.Set"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
+<!DOCTYPE html>
+<%@page import="model.Teacher" %>
+<%@page import="java.util.ArrayList" %>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>GetTeacher List</h1>
+<div class="col-sm-3"></div>
+<div class="col-sm-6">
+<h1 style="text-align:center;">GetTeacher List</h1>
+<table class="table table-striped">
+	<tr>
+		<th>회원번호</th>
+		<th>회원ID</th>
+		<th>회원PW</th>
+	</tr>
+<%
+	ArrayList<Teacher> arrayList=(ArrayList<Teacher>)(request.getAttribute("ArrayList"));
+	for(Teacher arr:arrayList){
+%>
+	<tr>
+		<td><%=arr.getNum() %></td>
+		<td><%=arr.getId() %></td>
+		<td><%=arr.getPw() %></td>
+	</tr>
+
+<%
+	}
+%>
+</table>
+</div>
+<div class="col-sm-3"></div>
 </body>
 </html>
