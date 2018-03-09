@@ -15,15 +15,13 @@ import model.TeacherDao;
 @WebServlet("/getTeacherList.jjev")
 public class GetTeacherListController extends HttpServlet {
 	private TeacherDao teacherDao;
-	
+	//list 화면 출력
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		this.teacherDao = new TeacherDao();
 		//Teacher teacher = new Teacher();
+		//ArrayList<Teacher> 를 정의하고 
 		ArrayList<Teacher> arrayList = new ArrayList<Teacher>();
 		arrayList=teacherDao.selectTeacher();
-		for(Teacher arr:arrayList) {
-			System.out.println(arr.getId());
-		}
 		request.setAttribute("ArrayList", arrayList);
 		request.getRequestDispatcher("/WEB-INF/views/getTeacherList.jsp").forward(request, response);
 	}

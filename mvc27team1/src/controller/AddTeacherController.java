@@ -21,17 +21,16 @@ public class AddTeacherController extends HttpServlet {
 
 	//teacher 입력
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//form 에서 넘어온  id ,pw 의 입력값을 각각 변수에 저장하고 Teacher 객체에 각각 변수의 값을 셋팅해준다
 		String teacherId = request.getParameter("teacherId");
 		String teacherPw = request.getParameter("teacherPw");
 		Teacher teacher = new Teacher();
 		teacher.setId(teacherId);
 		teacher.setPw(teacherPw);
 		this.teacherDao = new TeacherDao();
+		//teacherDao 의 insertTeacher 메서드를 실행해주고  매개변수로 teacher 를 준다.
 		teacherDao.insertTeacher(teacher);
-		//1.request 처리
-		//2.모델 (DAO) 호출
-		//3.다른 controller 호출 (redirect)
+		//sendRedirect 를 이용해 해당경로로 간다.
 		response.sendRedirect(request.getContextPath()+"/getTeacherList.jjev");
 	}
-
 }

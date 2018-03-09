@@ -5,7 +5,6 @@ public class Teacher {
 	private String id;
 	private String pw;
 	
-	
 	public int getNum() {
 		return num;
 	}

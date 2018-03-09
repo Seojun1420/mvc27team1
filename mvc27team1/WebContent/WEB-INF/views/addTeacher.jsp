@@ -1,34 +1,32 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>addTeacher</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<style>
-	body{
-		background: url(http://www.timurtek.com/wp-content/uploads/2014/10/form-bg.jpg) no-repeat center center fixed;
-		-webkit-background-size: cover;
-	  	background-size: cover;
-	  	}
-	
+		body{
+			background: url(http://www.timurtek.com/wp-content/uploads/2014/10/form-bg.jpg) no-repeat center center fixed;
+			-webkit-background-size: cover;
+		  	background-size: cover;
+		  	}
 	</style>
 	<script>
 		$(document).ready(function(){
 			$('#btn').click(function(){
 				if($('#teacherId').val().length < 4) {
-					$('#banHelper').text("æ∆¿Ãµ 4¿⁄¿ÃªÛ¿‘∑¬«œΩ√ø¿");
+					$('#banHelper').text("ÏïÑÏù¥Îîî 4ÏûêÏù¥ÏÉÅÏûÖÎ†•ÌïòÏãúÏò§");
 					return;
 				}else if($('#teacherPw').val().length < 4) {
-					$('#banHelper').text("∫Òπ–π¯»£ 4¿⁄¿ÃªÛ¿‘∑¬«œΩ√ø¿");
+					$('#banHelper').text("ÎπÑÎ∞ÄÎ≤àÌò∏ 4ÏûêÏù¥ÏÉÅÏûÖÎ†•ÌïòÏãúÏò§");
 					return;
 				}else if($('#teacherPwCheck').val().length <4){
-					$('#banHelper').text("»Æ¿Œ∫Òπ–π¯»£∏¶ 4¿⁄¿ÃªÛ ¿‘∑¬«ÿ¡÷ººø‰");
+					$('#banHelper').text("ÌôïÏù∏ÎπÑÎ∞ÄÎ≤àÌò∏Î•º 4ÏûêÏù¥ÏÉÅ ÏûÖÎ†•Ìï¥Ï£ºÏÑ∏Ïöî");
 					return;
 				}else if($('#teacherPw').val() != $('#teacherPwCheck').val()) {
-					$('#banHelper').text("∫Òπ–π¯»£∞° ∏¬¡ˆ æ Ω¿¥œ¥Ÿ.");
+					$('#banHelper').text("ÎπÑÎ∞ÄÎ≤àÌò∏Í∞Ä ÎßûÏßÄ ÏïäÏäµÎãàÎã§.");
 					return;
 				}else{
 					$('#myForm').submit();
@@ -45,24 +43,24 @@
 			<div class="form-group">
 				<label class="col-sm-3 control-label">teacher_id</label>
 				<div class="col-sm-9">
-					<input type="text" id="teacherId" name="teacherId"class="form-control" placeholder="ID¿‘∑¬"> 
+					<input type="text" id="teacherId" name="teacherId"class="form-control" placeholder="IDÏûÖÎ†•"> 
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-sm-3 control-label">teacher_pw</label>
 				<div class="col-sm-9">
-					<input type="password" id="teacherPw" name="teacherPw" class="form-control" placeholder="PW¿‘∑¬"> 
+					<input type="password" id="teacherPw" name="teacherPw" class="form-control" placeholder="PWÏûÖÎ†•"> 
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-3 control-label">teacher_pw»Æ¿Œ</label>
+				<label class="col-sm-3 control-label">teacher_pwÌôïÏù∏</label>
 				<div class="col-sm-9">
-					<input type="password" id="teacherPwCheck" name="teacherPwCheck" class="form-control" placeholder="PW»Æ¿Œ">
+					<input type="password" id="teacherPwCheck" name="teacherPwCheck" class="form-control" placeholder="PWÌôïÏù∏">
 				</div>
 			</div>
 			<span id="banHelper"></span>
 			<div style="text-align:center;">
-				<button id="btn" type="button" class="btn btn-default">∞‘Ω∫∆Æ√ﬂ∞°</button>
+				<button id="btn" type="button" class="btn btn-default">Í≤åÏä§Ìä∏Ï∂îÍ∞Ä</button>
 			</div>
 		</div>
 		<div class="col-sm-3"></div>
