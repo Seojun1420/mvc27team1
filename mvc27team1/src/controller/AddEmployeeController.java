@@ -6,12 +6,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.EmployeeDao;
+import model.Employee;
 
-/**
- * Servlet implementation class employeeController
- */
 @WebServlet("/addEmployee.jjdev")
-public class EmployeeController extends HttpServlet {
+public class AddEmployeeController extends HttpServlet {
+	private EmployeeDao employeeDao;
 	// guest 입력 폼요청
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getRequestDispatcher("/WEB-INF/views/addEmployee.jsp").forward(request, response);
@@ -22,6 +22,19 @@ public class EmployeeController extends HttpServlet {
 		//1. request 처리
 		//2. 모델 호출
 		//3. 다른 Controller 호출 redirect
+		String addEmployeeId = request.getParameter("addEmployeeId");
+		String addEmployeePw = request.getParameter("addEmployeePw");
+		System.out.println(addEmployeeId+"<-- addEmployeeId");
+		System.out.println(addEmployeePw+"<-- addEmployeePw");
+		//employee 호출
+		Employee employee = new Employee();
+		employee.setEmployee_id(addEmployeeId);
+		employee.setEmployee_pw(addEmployeePw);
+		
+		this.employeeDao = new EmployeeDao();
+		employeeDao.insertEmployee(employee);
+		
+		response.sendRedirect("./getEmployeeList.jjdev");
 	}
 
 }
