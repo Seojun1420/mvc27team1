@@ -5,6 +5,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>Insert title here</title>
 </head>
+	<style>
+		h1
+	</style>
 <body>
 	<h1> getStudentList </h1>
 </body>

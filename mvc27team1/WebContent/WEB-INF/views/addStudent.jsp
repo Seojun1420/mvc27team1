@@ -44,46 +44,45 @@
 </head>
 <body>
 	<h1>AddStudent</h1>
-
-<form id="myForm" method="post" action="<%=request.getContextPath()%>/addStudent.jjdev">
-	<div id="loginModal" class="모달 쇼" tabindex="-2" role="dialog" aria-hidden="true">
-	<div class="modal-dialog">
-		  <div class="modal-content">
-		  <div class="modal-header">
-		    <button type="button" class="close" data-dismiss="모달 " aria-hidden="true">×</button>
-		      <h2 class="text-center">AddStudent</h2>
-		       <div class="modal-body">
-		      <form class="form col-md-15 center-block">
-					<div class="col-sm-10"></div>
-					<div class="col-sm-14">
-			<div class="form-group">
-				<label class="col-sm-3 control-label">Student_Id</label>
-				<div class="col-sm-9">
-					<input type="text" id="StudentId" name="StudentId"class="form-control" placeholder="아이디 입력하시오."> 
+	<form id="myForm" method="post" action="./addStudent.jjdev"class="form-horizontal">
+		<div id="loginModal" class="모달 쇼" tabindex="-2" role="dialog" aria-hidden="true">
+		<div class="modal-dialog">
+			  <div class="modal-content">
+			  <div class="modal-header">
+			    <button type="button" class="close" data-dismiss="모달 " aria-hidden="true">×</button>
+			      <h2 class="text-center">AddStudent</h2>
+			       <div class="modal-body">
+			      <form class="form col-md-15 center-block">
+						<div class="col-sm-10"></div>
+						<div class="col-sm-14">
+				<div class="form-group">
+					<label class="col-sm-3 control-label">StudentId</label>
+					<div class="col-sm-9">
+						<input type="text" id="StudentId" name="StudentId"class="form-control" placeholder="아이디 입력하시오."> 
+					</div>
 				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-3 control-label">Student_Pw</label>
-				<div class="col-sm-9">
-				<input type="password"id="StudentPw" name="StudentPw" class="form-control" placeholder="패스워드 입력하시오."> 
+				<div class="form-group">
+					<label class="col-sm-3 control-label">Student_Pw</label>
+					<div class="col-sm-9">
+					<input type="password"id="StudentPw" name="StudentPw" class="form-control" placeholder="패스워드 입력하시오."> 
+					</div>
 				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-3 control-label">Student_Pw확인</label>
-				<div class="col-sm-9">
-					<input type="password"  id="StudentPwCheck" name="StudentPwCheck" class="form-control" placeholder="패스워드를 디시 확인하세요">
+				<div class="form-group">
+					<label class="col-sm-3 control-label">Student_Pw확인</label>
+					<div class="col-sm-9">
+						<input type="password"  id="StudentPwCheck" name="StudentPwCheck" class="form-control" placeholder="패스워드를 디시 확인하세요">
+					</div>
 				</div>
+				<span id="Helper"></span>
+				<div style="text-align:center;">
+					<button id="btn" type="button" class="btn btn-primary btn-lg btn-block"> 학생 추가 </button>
+				
+				</div>
+				
 			</div>
-			<span id="Helper"></span>
-			<div style="text-align:center;">
-				<button id="btn" type="button" class="btn btn-primary btn-lg btn-block"> 학생 추가 </button>
 			
-			</div>
-			
-		</div>
-		
-		<div class="col-sm-2"></div>
-	</form>
+			<div class="col-sm-2"></div>
+		</form>
 				</div>
 				 <div class="modal-footer">
           <div class="col-md-12">
@@ -93,6 +92,7 @@
 			
 		</div>
 	</div>
+</div>
 </div>
 </form>
 

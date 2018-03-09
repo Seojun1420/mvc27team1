@@ -8,15 +8,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-@WebServlet("/getStudentList.jjdev")
+@WebServlet ("/getStudent.jjdev")
 public class GetStudentListController extends HttpServlet {
-	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.getRequestDispatcher("/WEB-INF/views/getStudentList.jsp").forward(request, response);
 		// request...
 		// StudentDao
 		// request에 속성 추가
 		// forward
-		request.getRequestDispatcher("/WEB-INF/views/getStudentList.jsp").forward(request, response);
+		System.out.println("StudentId & StudentPw가 정상적으로 입력되었습니다.");
 	}
 
 }
