@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 import model.TeacherDao;
 
 
-@WebServlet("/deleteTeacher.jjdev")
-public class deleteTeacherController extends HttpServlet {
+@WebServlet("/removeTeacher.jjdev")
+public class RemoveTeacherController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("doget");

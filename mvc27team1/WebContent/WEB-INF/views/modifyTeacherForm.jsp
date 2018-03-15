@@ -3,7 +3,7 @@
 <%@page import="model.Teacher" %>
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 	<title>modifyTeacherForm</title>
 </head>
@@ -21,7 +21,7 @@
 					</tr>
 				</thead>
 				<%
-					Teacher teacher = (Teacher)request.getAttribute("teacher");
+					Teacher teacher = (Teacher)request.getAttribute("teacher");//request영역의 값을 getAttribute()메서드로 받아온다.
 				%>
 				<tbody>
 					<tr>

@@ -73,39 +73,39 @@ public class TeacherDao {
 			Teacher teacher = new Teacher();
 			String sql ="SELECT * FROM teacher WHERE teacher_no=?";
 			try {
-				connection=Driver.dirverDbcon();
-				statement=connection.prepareStatement(sql);
-				statement.setInt(1,teacherNo);
-				resultSet=statement.executeQuery();
+				connection=Driver.dirverDbcon();//db 연결을 한다
+				statement=connection.prepareStatement(sql);//sql 쿼리문 실행준비를 해준다.
+				statement.setInt(1,teacherNo);//sql 문을 완성해준다.
+				resultSet=statement.executeQuery();//sql을 실행하고 그 결과를 resultSet에 저장한다.
 				
-				while(resultSet.next()) {
+				while(resultSet.next()) {//resultSet의 next()메서드를 사용해 db컬럼의 정보를 읽어 teacher의 set메서드에 셋팅한다.
 					teacher.setTeacher_no(resultSet.getInt("teacher_no"));
 					teacher.setTeacher_id(resultSet.getString("teacher_id"));
 					teacher.setTeacher_pw(resultSet.getString("teacher_pw"));
 				}
 				
-			}catch(ClassNotFoundException e) {
+			}catch(ClassNotFoundException e) {//예외가 발생퇴면 catch한다.
 				e.printStackTrace();
 			}catch(SQLException e) {
 				e.printStackTrace();
 			}
-			finally {
+			finally {//실행이 끝나면 finally의 if 문이실행되 조건이 맞으면 close 해준다.
 				if(resultSet !=null) try {resultSet.close();} catch(SQLException e) {}
 				if(statement !=null) try {statement.close();} catch(SQLException e) {}
 				if(connection != null) try {connection.close();} catch(SQLException e) {}
 			}
-		return teacher;
+		return teacher;//teacher 를 리턴
 	}
 	public void updateTeacher(Teacher teacher) {
 		System.out.println("updateTeacher 실행");
 		String sql = "UPDATE teacher SET teacher_id=?,teacher_pw=?  WHERE teacher_no=?";
 		try{
-			connection=Driver.dirverDbcon();
-			statement=connection.prepareStatement(sql);
-			statement.setString(1, teacher.getTeacher_id());
+			connection=Driver.dirverDbcon();//db 연결을 한다
+			statement=connection.prepareStatement(sql);//sql 쿼리문 실행준비를 해준다.
+			statement.setString(1, teacher.getTeacher_id());//sql 문을 완성해준다.
 			statement.setString(2, teacher.getTeacher_pw());
 			statement.setInt(3, teacher.getTeacher_no());
-			statement.executeUpdate();
+			statement.executeUpdate();//sql을 실행한다.
 		}catch(ClassNotFoundException e) {
 			e.printStackTrace();
 		}catch(SQLException e) {

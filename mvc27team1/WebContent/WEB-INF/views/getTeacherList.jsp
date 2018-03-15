@@ -34,7 +34,7 @@
 						<td><%=teacher.getTeacher_id() %></td>
 						<td>****</td>
 						<td><a href="<%=request.getContextPath()%>/modifyTeacher.jjdev?teacherNo=<%=teacher.getTeacher_no()%>">수정</a></td>
-						<td><a href="<%=request.getContextPath()%>/deleteTeacher.jjdev?teacherNo=<%=teacher.getTeacher_no()%>">삭제</a></td>
+						<td><a href="<%=request.getContextPath()%>/removeTeacher.jjdev?teacherNo=<%=teacher.getTeacher_no()%>">삭제</a></td>
 						<td><a href="<%=request.getContextPath()%>/addAdressTeacher.jjdev?teacherNo=<%=teacher.getTeacher_no()%>">주소추가</a></td>
 					</tr>
 				</tbody>

@@ -10,9 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 import model.TeacherAddr;
 import model.TeacherAddrDao;
 
-
 @WebServlet("/addAdressTeacher.jjdev")
-public class addAdressTeacherController extends HttpServlet {
+public class AddAdressTeacherController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("doget");
