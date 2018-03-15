@@ -7,27 +7,37 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-	<title>Insert title here</title>
+	<title>getTeacherList</title>
 </head>
 <body>
 	<div class="col-sm-3"></div>
 	<div class="col-sm-6">
 		<h1 style="text-align:center;">GetTeacher List</h1>
 		<table class="table table-striped">
-			<tr>
-				<th>회원번호</th>
-				<th>회원ID</th>
-				<th>회원PW</th>
-			</tr>
+			<thead>
+				<tr>
+					<th>회원번호</th>
+					<th>회원ID</th>
+					<th>회원PW</th>
+					<th>수정</th>
+					<th>삭제</th>
+					<th>ADD TEACHER_ADD</th>
+				</tr>
+			</thead>
 		<%
 			ArrayList<Teacher> arrayList=(ArrayList<Teacher>)(request.getAttribute("ArrayList"));
-			for(Teacher arr:arrayList){
+			for(Teacher teacher:arrayList){
 		%>
-			<tr>
-				<td><%=arr.getNum() %></td>
-				<td><%=arr.getId() %></td>
-				<td><%=arr.getPw() %></td>
-			</tr>
+				<tbody>
+					<tr>
+						<td><%=teacher.getTeacher_no() %></td>
+						<td><%=teacher.getTeacher_id() %></td>
+						<td>****</td>
+						<td><a href="<%=request.getContextPath()%>/modifyTeacher.jjdev?teacherNo=<%=teacher.getTeacher_no()%>">수정</a></td>
+						<td><a href="<%=request.getContextPath()%>/deleteTeacher.jjdev?teacherNo=<%=teacher.getTeacher_no()%>">삭제</a></td>
+						<td><a href="<%=request.getContextPath()%>/addAdressTeacher.jjdev?teacherNo=<%=teacher.getTeacher_no()%>">주소추가</a></td>
+					</tr>
+				</tbody>
 		<%
 			}
 		%>

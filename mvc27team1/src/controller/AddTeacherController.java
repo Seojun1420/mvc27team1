@@ -25,8 +25,8 @@ public class AddTeacherController extends HttpServlet {
 		String teacherId = request.getParameter("teacherId");
 		String teacherPw = request.getParameter("teacherPw");
 		Teacher teacher = new Teacher();
-		teacher.setId(teacherId);
-		teacher.setPw(teacherPw);
+		teacher.setTeacher_id(teacherId);
+		teacher.setTeacher_pw(teacherPw);
 		this.teacherDao = new TeacherDao();
 		//teacherDao 의 insertTeacher 메서드를 실행해주고  매개변수로 teacher 를 준다.
 		teacherDao.insertTeacher(teacher);
