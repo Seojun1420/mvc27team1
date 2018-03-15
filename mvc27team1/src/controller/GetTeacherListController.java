@@ -15,12 +15,9 @@ import model.TeacherDao;
 @WebServlet("/getTeacherList.jjev")
 public class GetTeacherListController extends HttpServlet {
 	private TeacherDao teacherDao;
-	//list 화면 출력
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		this.teacherDao = new TeacherDao();
-		//Teacher teacher = new Teacher();
-		//ArrayList<Teacher> 를 정의하고 
 		ArrayList<Teacher> arrayList = new ArrayList<Teacher>();
 		arrayList=teacherDao.selectTeacher();
 		request.setAttribute("ArrayList", arrayList);
