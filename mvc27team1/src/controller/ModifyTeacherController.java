@@ -14,7 +14,7 @@ public class ModifyTeacherController extends HttpServlet {
 
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("doGet 수정");
+		request.setCharacterEncoding("UTF-8");
 		int teacherNo = (Integer.parseInt(request.getParameter("teacherNo")));//수정버튼을 눌렀을때 teacherNo 변수에 저장된 값을 가져온다. int 타입이기때문에 형변환을 해준다
 		System.out.println(teacherNo+"<<받아온 아이디");
 		TeacherDao teacherDao = new TeacherDao();
@@ -26,7 +26,7 @@ public class ModifyTeacherController extends HttpServlet {
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("doPost 수정");
+		request.setCharacterEncoding("UTF-8");
 		int teacherNo = (Integer.parseInt(request.getParameter("teacherNo")));//수정버튼을 눌렀을때 teacherNo 변수에 저장된 값을 가져온다. int 타입이기때문에 형변환을 해준다
 		String teacherId = request.getParameter("teacherId");//폼에 입력한 수정한 ID값과 PW값을 getParameter메서드를 사용해 가져오고 각각 변수에 저장한다.
 		String teacherPw = request.getParameter("teacherPw");

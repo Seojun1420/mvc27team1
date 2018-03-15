@@ -16,11 +16,13 @@ public class AddTeacherController extends HttpServlet {
 
 	//teacher 입력 폼
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		request.getRequestDispatcher("/WEB-INF/views/addTeacher.jsp").forward(request, response);
 	}
 
 	//teacher 입력
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		//form 에서 넘어온  id ,pw 의 입력값을 각각 변수에 저장하고 Teacher 객체에 각각 변수의 값을 셋팅해준다
 		String teacherId = request.getParameter("teacherId");
 		String teacherPw = request.getParameter("teacherPw");

@@ -14,7 +14,7 @@ import model.TeacherDao;
 public class RemoveTeacherController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("doget");
+		request.setCharacterEncoding("UTF-8");
 		int teacherNo = (Integer.parseInt(request.getParameter("teacherNo")));
 		System.out.println(teacherNo);
 		TeacherDao teacherDao = new TeacherDao();

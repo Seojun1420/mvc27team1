@@ -14,30 +14,28 @@ import model.TeacherAddrDao;
 public class AddAdressTeacherController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("doget");
-		int teacherNo = (Integer.parseInt(request.getParameter("teacherNo")));
+		request.setCharacterEncoding("UTF-8");
+		int teacherNo = (Integer.parseInt(request.getParameter("teacherNo")));//주소추가 눌렀을때 teacherNo 변수에 저장된 값을 가져온다. int 타입이기때문에 형변환을 해준다
 		System.out.println(teacherNo);
 		TeacherAddr teacherAddr = new TeacherAddr();
 		teacherAddr.setTeacherNo(teacherNo);
-		request.setAttribute("teacherAddr", teacherAddr);
+		request.setAttribute("teacherAddr", teacherAddr);//teacherAddr값을 request영역에 셋팅한다.
 		request.getRequestDispatcher("/WEB-INF/views/addAdressTeacherForm.jsp").forward(request, response);
-		
+		//request영역에 셋팅한 값을 사용하기위해 request.getRequestDispatcher()메서드를사용해 forward한다.
 	}
-
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		System.out.println("dopost");
-		String address = request.getParameter("address");
+		String address = request.getParameter("address");//폼에 입력한 address값을 getParameter메서드를사용해 가져온뒤 변수에 저장한다.
 		int teacherNo = (Integer.parseInt(request.getParameter("teacherNo")));
 		System.out.println(address+"받아온 주소");
 		System.out.println(teacherNo+"받아온 넘버");
-		TeacherAddr teacherAddr = new TeacherAddr();
+		TeacherAddr teacherAddr = new TeacherAddr();//teacherAddr객체안에 set메서드를사용해 값을 셋팅해준다.
 		teacherAddr.setTeacherNo(teacherNo);
 		teacherAddr.setAddress(address);
 		
 		TeacherAddrDao teacherAddrDao = new TeacherAddrDao();
-		teacherAddrDao.addAdressTeacher(teacherAddr);
+		teacherAddrDao.addAdressTeacher(teacherAddr);//TeacherAddrDao 객체를 생성하고 addAdressTeacher메서드를 실행하며 매개변수로teacherAddr준다.
 		response.sendRedirect(request.getContextPath()+"/getTeacherList.jjev");
 	}
 
