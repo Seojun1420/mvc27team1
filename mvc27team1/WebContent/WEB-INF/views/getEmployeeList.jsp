@@ -32,7 +32,7 @@
 				<td>****</td>
 				<td><a href="<%= request.getContextPath()%>/modifyEmployee.jjdev?employeeNo=<%=employee.getEmployee_no()%>">수정</a></td>
 				<td><a href="<%= request.getContextPath()%>/removeEmployee.jjdev?employeeNo=<%=employee.getEmployee_no()%>">삭제</a></td>
-				<td><a href="<%= request.getContextPath()%>/addEmployee.jjdev?employeeNo=<%=employee.getEmployee_no()%>">주소추가</a></td>
+				<td><a href="<%= request.getContextPath()%>/addAddressEmployee.jjdev?employeeNo=<%=employee.getEmployee_no()%>">주소추가</a></td>
 			</tr>
 		</tbody>				
 <% 			
