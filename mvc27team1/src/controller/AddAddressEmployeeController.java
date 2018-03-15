@@ -15,6 +15,7 @@ import model.EmployeeAddrDao;
 public class AddAddressEmployeeController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		System.out.println("AddAddressEmployeeController doGet 메서드 실행");
 		int employeeNo = Integer.parseInt(request.getParameter("employeeNo"));
 		System.out.println(employeeNo+"<--- 넘겨받은 employeeNo");
@@ -24,15 +25,20 @@ public class AddAddressEmployeeController extends HttpServlet {
 		
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("AddAddressEmployeeController doGet 메서드 실행");
+		request.setCharacterEncoding("UTF-8");
+		System.out.println("AddAddressEmployeeController doPost 메서드 실행");
 		int employeeNo = Integer.parseInt(request.getParameter("employeeNo"));
+		String employeeAddr = request.getParameter("employeeAddr");
 		System.out.println(employeeNo+"<--- 넘겨받은 employeeNo");
-		
-		EmployeeAddrDao employeeAddrDao = new EmployeeAddrDao();
+		System.out.println(employeeAddr+"<--- 넘겨받은 employeeAddr");
 		EmployeeAddr employeeaddr = new EmployeeAddr();
+		employeeaddr.setEmployeeNo(employeeNo);
+		employeeaddr.setAddress(employeeAddr);
+		
+		EmployeeAddrDao employeeAddrDao = new EmployeeAddrDao();		
 		employeeAddrDao.insertEmployeeAddr(employeeaddr);
 		
-		response.sendRedirect("/WEB-INF/views/getEmployeeList.jjdev");
+		response.sendRedirect(request.getContextPath() + "/getEmployeeList.jjdev");
 		
 	}
 }

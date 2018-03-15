@@ -24,8 +24,8 @@ public class EmployeeAddrDao {
 			statement = connection.prepareStatement(sql);
 			//connection 객체 참조 변수에 할당된 참조값을 찾아가 prepareStatement메서드를실행하고 준비된 쿼리문을 입력한다.	
 
-			statement.setInt(1, employeeaddr.getEmployAddrNo());
-			statement.setInt(2, employeeaddr.getEmployNo());
+			statement.setInt(1, employeeaddr.getEmployeeAddrNo());
+			statement.setInt(2, employeeaddr.getEmployeeNo());
 			statement.setString(3, employeeaddr.getAddress());
 			/*
 		     * employeeaddr 객체참조변수에 할당된 참조값을 찾아가 getEmployAddrNo, getEmployNo, getAddress 메서드를 호출후

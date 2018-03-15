@@ -12,18 +12,24 @@ import model.Employee;
 import model.EmployeeDao;
 
 @WebServlet("/modifyEmployee.jjdev")
-public class modifyEmployeeController extends HttpServlet {
+public class ModifyEmployeeController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//회원수정 요청이 들어왓을때 수정form을 보여준다.
+		request.setCharacterEncoding("UTF-8");
 		System.out.println("modifyEmployeeController doGet 메서드 실행");
 		int employeeNo = Integer.parseInt(request.getParameter("employeeNo"));
 		System.out.println(employeeNo+"<--- 넘겨받은 employeeNo");
+		//list에서 수정버튼을 누르면 get방식으로 employeeNo값이 넘어온다.
 		EmployeeDao employeedao = new EmployeeDao();
 		Employee employee = employeedao.employeeSelectForUpdate(employeeNo);
+		//employeeSelectForUpdate 메서드를 통해 넘겨받은 employeeNo의 정보를 return 받아 employee객체에 담는다.
 		request.setAttribute("employee", employee);
 		request.getRequestDispatcher("/WEB-INF/views/modifyEmployeeForm.jsp").forward(request, response);
+		//한명의 회원정보를 담은 employee 
 		
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		System.out.println("modifyEmployeeController doPost 메서드 실행");
 		Employee employee = new Employee();
 		int modifyEmployeeNo = Integer.parseInt(request.getParameter("modifyEmployeeNo"));

@@ -6,19 +6,19 @@
 <title>addAddressEmployee.jsp</title>
 </head>
 <body>
-	<form action="<%=request.getContextPath() %>/modifyEmployee.jjdev" method="post">
+<%
+	int employeeNo = (int)request.getAttribute("employeeNo");
+%>
+	<form action="<%=request.getContextPath() %>/addAddressEmployee.jjdev" method="post">
 		<table border="1">
 		<tr>
-			<td>회원번호</td>
-			<td><input type="text" name="modifyEmployeeNo" value="<%=%>" readonly></td>
+			<td>회원넘버</td>
+			<td><input type="text" name="employeeNo" value="<%= employeeNo %>"></td>
 		<tr>
-			<td>회원아이디</td>
-			<td><input type="text" name="modifyEmployeeId" value="<%=%>"></td>
+			<td>회원주소</td>
+			<td><input type="text" name="employeeAddr"></td>
 		<tr>
-			<td>회원번호</td>
-			<td><input type="text" name="modifyEmployeePw" value="<%=%>"></td>
-		<tr>
-			<td ><input type="submit" value="수정하기"></td>
+			<td ><input type="submit" value="주소추가하기"></td>
 		</tr>
 	</table>
 	</form>

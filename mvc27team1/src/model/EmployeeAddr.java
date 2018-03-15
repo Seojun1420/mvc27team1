@@ -1,20 +1,21 @@
 package model;
 
 public class EmployeeAddr {
-	private int employAddrNo;
-	private int employNo;
+	private int employeeAddrNo;
+	private int employeeNo;
 	private String address;
-	public int getEmployAddrNo() {
-		return employAddrNo;
+	
+	public int getEmployeeAddrNo() {
+		return employeeAddrNo;
 	}
-	public void setEmployAddrNo(int employAddrNo) {
-		this.employAddrNo = employAddrNo;
+	public void setEmployeeAddrNo(int employeeAddrNo) {
+		this.employeeAddrNo = employeeAddrNo;
 	}
-	public int getEmployNo() {
-		return employNo;
+	public int getEmployeeNo() {
+		return employeeNo;
 	}
-	public void setEmployNo(int employNo) {
-		this.employNo = employNo;
+	public void setEmployeeNo(int employeeNo) {
+		this.employeeNo = employeeNo;
 	}
 	public String getAddress() {
 		return address;
@@ -24,8 +25,9 @@ public class EmployeeAddr {
 	}
 	@Override
 	public String toString() {
-		return "EmployeeAddr [employAddrNo=" + employAddrNo + ", employNo=" + employNo + ", address=" + address + "]";
+		return "EmployeeAddr [employeeAddrNo=" + employeeAddrNo + ", employeeNo=" + employeeNo + ", address=" + address
+				+ "]";
 	}
-	
+
 	
 }
