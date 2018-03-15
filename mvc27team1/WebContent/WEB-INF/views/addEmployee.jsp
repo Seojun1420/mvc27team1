@@ -15,6 +15,7 @@
 		h2{text-align: center;}
 		.input-group{margin-bottom: 5px !important;}
 		.error{text-align: center; color: red; font-size: 3rem;}
+		#pb{color: red !importan;}
 	</style>
 	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -25,11 +26,11 @@
 			var uId = ('.addEmployeeId'); 
 			$('.btn').click(function(){
 				if($('.addEmployeeId').val().length < 4) {
-					$('.error').text("아이디 4자이상입력하시오");
+					$('.error').text("아이디 4자이상 입력하시오");
 					$('.addEmployeeId').focus();
 					return;
 				}else if($('.addEmployeePw').val().length < 4) {
-					$('.error').text("비밀번호 4자이상입력하시오");
+					$('.error').text("비밀번호 4자이상 입력하시오");
 					$('.addEmployeePw').focus();
 					return;
 				}else if($('.addEmployeePw').val() != $('#addEmployeePwCheck').val()) {
@@ -51,7 +52,7 @@
 		<div class="col-sm-6">
 			<div class="panel panel-default">
 				<form id="loginForm" method="post" action="./addEmployee.jjdev">
-				<div class="panel-body form-horizontal" >
+				<div id="pb" class="pb panel-body form-horizontal" >
 					<div class="form-group">
 						<label class="col-sm-3 control-label for=id">employee_id : </label>
 						<div class="col-sm-9">

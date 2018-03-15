@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class GetEmployeeListController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("리스트 두겟 메서드 실행");
+		System.out.println("GetEmployeeListController doGet 메서드 실행");
 		// request...
 		// EmployeeDao
 		// request에 속성추가
