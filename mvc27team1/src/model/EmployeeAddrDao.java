@@ -2,6 +2,7 @@ package model;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import driver.Driver;
@@ -9,6 +10,7 @@ import driver.Driver;
 public class EmployeeAddrDao {
 	Connection connection = null;
 	PreparedStatement statement = null;
+	ResultSet resultSet = null;
 	public void insertEmployeeAddr(EmployeeAddr employeeaddr) {
 		/*
 		 * insertEmployeeAddr 메서드는 주소를 추가하는 메서드
@@ -45,5 +47,35 @@ public class EmployeeAddrDao {
 			if(statement != null) try{statement.close();} catch(SQLException e) {} //순서대로 가장 늦게 실행된 객체부터 닫아준다.
 			if(connection != null) try{connection.close();} catch(SQLException e) {}
 		}
+	}
+	public int countEmployeeAddr(int employeeno) {
+		int count = 0;
+		try {
+			connection = Driver.dirverDbcon();
+			/* 
+		     * db연결을 위해 Driver 클래스의 dirverDbcon 메서드 호출한다 .
+		     */
+			
+			String sql = "SELECT COUNT(employee_no) FROM employee_addr WHERE employee_no=?";
+			statement = connection.prepareStatement(sql);
+
+			statement.setInt(1, employeeno);
+			
+			resultSet = statement.executeQuery();
+			if(resultSet.next()) {
+				count = resultSet.getInt(1);
+			}
+			
+			
+		}catch(ClassNotFoundException e) { //예외처리 Class.forName
+			e.printStackTrace();			
+		}catch(SQLException e) {// jdbc
+			e.printStackTrace();
+		}finally {
+			if(resultSet != null) try{resultSet.close();} catch(SQLException e) {}
+			if(statement != null) try{statement.close();} catch(SQLException e) {} //순서대로 가장 늦게 실행된 객체부터 닫아준다.
+			if(connection != null) try{connection.close();} catch(SQLException e) {}
+		}
+		return count;
 	}
 }

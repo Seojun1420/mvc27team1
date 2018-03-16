@@ -2,11 +2,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>addAddressEmployee.jsp</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>addAddressEmployee.jsp</title>
 </head>
 <body>
-<%
+<%	
 	int employeeNo = (int)request.getAttribute("employeeNo");
 %>
 	<form action="<%=request.getContextPath() %>/addAddressEmployee.jjdev" method="post">

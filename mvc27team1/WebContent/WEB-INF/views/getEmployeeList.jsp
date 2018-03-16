@@ -5,8 +5,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<title>Insert title here</title>
 </head>
 <body>
 	<table border="1">
@@ -21,7 +22,12 @@
 			</tr>
 		</thead>
 <%
- ArrayList<Employee> list = (ArrayList<Employee>) request.getAttribute("Employee");
+	int count = 0;
+	if(request.getAttribute("count") != null){
+		count = (int)request.getAttribute("count");
+	}
+	ArrayList<Employee> list = (ArrayList<Employee>) request.getAttribute("Employee");
+	
 	for(Employee employee : list) {		
 %>
 			
@@ -32,13 +38,14 @@
 				<td>****</td>
 				<td><a href="<%= request.getContextPath()%>/modifyEmployee.jjdev?employeeNo=<%=employee.getEmployee_no()%>">수정</a></td>
 				<td><a href="<%= request.getContextPath()%>/removeEmployee.jjdev?employeeNo=<%=employee.getEmployee_no()%>">삭제</a></td>
-				<td><a href="<%= request.getContextPath()%>/addAddressEmployee.jjdev?employeeNo=<%=employee.getEmployee_no()%>">주소추가</a></td>
-				
+				<td><a class="addrA" href="<%= request.getContextPath()%>/addAddressEmployee.jjdev?employeeNo=<%=employee.getEmployee_no()%>">주소추가</a><span class="addrSpan"></span></td>								
 			</tr>
 		</tbody>				
 <% 			
 }
-%>		
+%>
+
 	</table>
+
 </body>
 </html>

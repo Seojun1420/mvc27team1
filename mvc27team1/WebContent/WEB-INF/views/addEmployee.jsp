@@ -23,7 +23,7 @@
 		$(document).ready(function() {
 			//폼 유효성 검사 후 폼을 submit
 			
-			var uId = ('.addEmployeeId'); 
+ 
 			$('.btn').click(function(){
 				if($('.addEmployeeId').val().length < 4) {
 					$('.error').text("아이디 4자이상 입력하시오");

@@ -13,15 +13,27 @@ import model.EmployeeAddrDao;
 
 @WebServlet("/addAddressEmployee.jjdev")
 public class AddAddressEmployeeController extends HttpServlet {
-
+	EmployeeAddrDao employeeAddrDao = null;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		System.out.println("AddAddressEmployeeController doGet 메서드 실행");
 		int employeeNo = Integer.parseInt(request.getParameter("employeeNo"));
 		System.out.println(employeeNo+"<--- 넘겨받은 employeeNo");
 		
-		request.setAttribute("employeeNo", employeeNo);
-		request.getRequestDispatcher("/WEB-INF/views/addAddressEmployee.jsp").forward(request, response);
+		employeeAddrDao = new EmployeeAddrDao();
+		int count = employeeAddrDao.countEmployeeAddr(employeeNo);
+		
+		
+		if(count >= 5) {
+			System.out.println("등록불가");
+			request.setAttribute("count", count);
+			request.getRequestDispatcher("/getEmployeeList.jjdev").forward(request, response);
+		}else {
+			System.out.println("등록가능");
+			request.setAttribute("employeeNo", employeeNo);
+			request.getRequestDispatcher("/WEB-INF/views/addAddressEmployee.jsp").forward(request, response);	
+		}
+		
 		
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -35,7 +47,7 @@ public class AddAddressEmployeeController extends HttpServlet {
 		employeeaddr.setEmployeeNo(employeeNo);
 		employeeaddr.setAddress(employeeAddr);
 		
-		EmployeeAddrDao employeeAddrDao = new EmployeeAddrDao();		
+		employeeAddrDao = new EmployeeAddrDao();
 		employeeAddrDao.insertEmployeeAddr(employeeaddr);
 		
 		response.sendRedirect(request.getContextPath() + "/getEmployeeList.jjdev");
