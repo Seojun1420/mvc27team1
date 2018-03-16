@@ -8,14 +8,13 @@ import java.util.ArrayList;
 import driver.Driver;
 
 public class TeacherDao {
-	Connection connection=null;
-	PreparedStatement statement=null;
-	ResultSet resultSet =null;
-	//DB¿¡ ID ,PW ÀÇ Á¤º¸¸¦ ÀúÀåÇÏ´Â ¸Ş¼­µå ¸®ÅÏÅ¸ÀÔ ¾øÀ½ , ¸Å°³º¯¼ö·Î Teacher Å¬·¡½º ¸¦ ¹Ş´Â´Ù.
+	//DBì— ID ,PW ì˜ ì •ë³´ë¥¼ ì €ì¥í•˜ëŠ” ë©”ì„œë“œ ë¦¬í„´íƒ€ì… ì—†ìŒ , ë§¤ê°œë³€ìˆ˜ë¡œ Teacher í´ë˜ìŠ¤ ë¥¼ ë°›ëŠ”ë‹¤.
 	public void insertTeacher(Teacher teacher){
-		System.out.println("insertTeacher ½ÇÇà");
+		Connection connection=null;
+		PreparedStatement statement=null;
+		System.out.println("insertTeacher ì‹¤í–‰");
 		String sql="INSERT INTO teacher VALUES(teacher_no,?,?)";
-		//DB ¿¬°áÀ» ÇØÁÖ°í sql À» ÁØºñ ¹× ¿Ï¼º ½ÇÇà ÇØÁØ´Ù. try catch ¹®À¸·Î ¿¹¿Ü°¡ ÀÖÀ¸¸é È®ÀÎÇØÁØ´Ù.
+		//DB ì—°ê²°ì„ í•´ì£¼ê³  sql ì„ ì¤€ë¹„ ë° ì™„ì„± ì‹¤í–‰ í•´ì¤€ë‹¤. try catch ë¬¸ìœ¼ë¡œ ì˜ˆì™¸ê°€ ìˆìœ¼ë©´ í™•ì¸í•´ì¤€ë‹¤.
 		try {
 			connection=Driver.dirverDbcon();
 			statement=connection.prepareStatement(sql);
@@ -29,83 +28,91 @@ public class TeacherDao {
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
-		//¿¹¿Ü°¡ ¹ß»ıÇÏ°Å³ª ½ÇÇàÀÌ ¿Ï·áµÇ¸é statement ,connection À» ³¡³»ÁØ´Ù.
+		//ì˜ˆì™¸ê°€ ë°œìƒí•˜ê±°ë‚˜ ì‹¤í–‰ì´ ì™„ë£Œë˜ë©´ statement ,connection ì„ ëë‚´ì¤€ë‹¤.
 		finally {
 			if(statement != null) try {statement.close();} catch(SQLException e) {}
 			if(connection != null) try {connection.close();} catch(SQLException e) {}
 		}
 	}
-	//ID,PW ¸¦ ÀÔ·ÂÇÑµÚ µî·Ï ¹öÆ°À» ´­¸£¸é LIST °¡ ³ª¿Í¾ßÇÏ±â¶§¹®¿¡ SELECT ÇØÁÙ ¸Ş¼­µå°¡ ÇÊ¿äÇÏ´Ù
-	//¸®ÅÏÅ¸ÀÔÀº ¿©·¯ ¸®½ºÆ®µéÀ» (Teacher)¹Ş¾Æ¾ßÇÏ ÇÏ¹Ç·Î ArrayList<Teacher> ¸Å°³º¯¼ö´Â ¾ø´Ù
+	//ID,PW ë¥¼ ì…ë ¥í•œë’¤ ë“±ë¡ ë²„íŠ¼ì„ ëˆŒë¥´ë©´ LIST ê°€ ë‚˜ì™€ì•¼í•˜ê¸°ë•Œë¬¸ì— SELECT í•´ì¤„ ë©”ì„œë“œê°€ í•„ìš”í•˜ë‹¤
+	//ë¦¬í„´íƒ€ì…ì€ ì—¬ëŸ¬ ë¦¬ìŠ¤íŠ¸ë“¤ì„ (Teacher)ë°›ì•„ì•¼í•˜ í•˜ë¯€ë¡œ ArrayList<Teacher> ë§¤ê°œë³€ìˆ˜ëŠ” ì—†ë‹¤
 	public ArrayList<Teacher> selectTeacher() {
-		System.out.println("selectTeacher ½ÇÇà");
+		Connection connection=null;
+		PreparedStatement statement=null;
+		ResultSet resultSet =null;
+		System.out.println("selectTeacher ì‹¤í–‰");
 		ArrayList<Teacher> arrayList = new ArrayList<Teacher>();
 		String sql = "SELECT teacher_no,teacher_id FROM teacher";
 		try {
-			//DB¸¦ ¿¬°áÇÏ°í SQL Äõ¸®¸¦ ÁØºñ ¹× ½ÇÇàÀ» ÇØÁØ´Ù.
+			//DBë¥¼ ì—°ê²°í•˜ê³  SQL ì¿¼ë¦¬ë¥¼ ì¤€ë¹„ ë° ì‹¤í–‰ì„ í•´ì¤€ë‹¤.
 			connection=Driver.dirverDbcon();
 			statement=connection.prepareStatement(sql);
 			resultSet=statement.executeQuery();
-			//next() ¸Ş¼­µå·Î µ¥ÀÌÅÍº£ÀÌ½º¿¡ ÀÖ´Â ÄÃ·³À» ÇÑÁÙ¾¿ ÀĞ¾î¿Í Teacher °´Ã¼¿¡ ¼ÂÆÃÇØÁØ´Ù. ±×¸®°í ArrayList¿¡ add ÇØÁØ´Ù.
+			//next() ë©”ì„œë“œë¡œ ë°ì´í„°ë² ì´ìŠ¤ì— ìˆëŠ” ì»¬ëŸ¼ì„ í•œì¤„ì”© ì½ì–´ì™€ Teacher ê°ì²´ì— ì…‹íŒ…í•´ì¤€ë‹¤. ê·¸ë¦¬ê³  ArrayListì— add í•´ì¤€ë‹¤.
 			while(resultSet.next()) {
 				Teacher	teacher = new Teacher();
 				teacher.setTeacher_no(resultSet.getInt("teacher_no"));
 				teacher.setTeacher_id(resultSet.getString("teacher_id"));
 				arrayList.add(teacher);
 			}
-			//try catch ¹®À¸·Î ¿¹¿Ü¹ß»ı½Ã Ã³¸®ÇØÁØ´Ù.
+			//try catch ë¬¸ìœ¼ë¡œ ì˜ˆì™¸ë°œìƒì‹œ ì²˜ë¦¬í•´ì¤€ë‹¤.
 		}catch(ClassNotFoundException e) {
 			e.printStackTrace();
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
-		//¿¹¿Ü°¡ ¹ß»ıÇÏ°Å³ª  finally ÀÇ if ¹®¿¡ ÀÖ´Â Á¶°ÇÀÌ ÂüÀÌµÇ¸é try¿¡°¡ close()¸Ş¼­µå¸¦ ½ÇÇàÇØ ³¡³»ÁØ´Ù. 
+		//ì˜ˆì™¸ê°€ ë°œìƒí•˜ê±°ë‚˜  finally ì˜ if ë¬¸ì— ìˆëŠ” ì¡°ê±´ì´ ì°¸ì´ë˜ë©´ tryì—ê°€ close()ë©”ì„œë“œë¥¼ ì‹¤í–‰í•´ ëë‚´ì¤€ë‹¤. 
 		finally {
 			if(resultSet != null) try {resultSet.close();} catch(SQLException e) {}
 			if(statement != null) try {statement.close();} catch(SQLException e) {}
 			if(connection != null) try {connection.close();} catch(SQLException e) {}
 			}
-		//arrayList ¸¦ ¸®ÅÏÇÑ´Ù.
+		//arrayList ë¥¼ ë¦¬í„´í•œë‹¤.
 		return arrayList;
 	}
 	public Teacher TeacherSelectForUpdate(int teacherNo) {
-		System.out.println("TeacherSelectForUpdate ½ÇÇà");
+		Connection connection=null;
+		PreparedStatement statement=null;
+		ResultSet resultSet =null;
+		System.out.println("TeacherSelectForUpdate ì‹¤í–‰");
 			Teacher teacher = new Teacher();
 			String sql ="SELECT * FROM teacher WHERE teacher_no=?";
 			try {
-				connection=Driver.dirverDbcon();//db ¿¬°áÀ» ÇÑ´Ù
-				statement=connection.prepareStatement(sql);//sql Äõ¸®¹® ½ÇÇàÁØºñ¸¦ ÇØÁØ´Ù.
-				statement.setInt(1,teacherNo);//sql ¹®À» ¿Ï¼ºÇØÁØ´Ù.
-				resultSet=statement.executeQuery();//sqlÀ» ½ÇÇàÇÏ°í ±× °á°ú¸¦ resultSet¿¡ ÀúÀåÇÑ´Ù.
+				connection=Driver.dirverDbcon();//db ì—°ê²°ì„ í•œë‹¤
+				statement=connection.prepareStatement(sql);//sql ì¿¼ë¦¬ë¬¸ ì‹¤í–‰ì¤€ë¹„ë¥¼ í•´ì¤€ë‹¤.
+				statement.setInt(1,teacherNo);//sql ë¬¸ì„ ì™„ì„±í•´ì¤€ë‹¤.
+				resultSet=statement.executeQuery();//sqlì„ ì‹¤í–‰í•˜ê³  ê·¸ ê²°ê³¼ë¥¼ resultSetì— ì €ì¥í•œë‹¤.
 				
-				while(resultSet.next()) {//resultSetÀÇ next()¸Ş¼­µå¸¦ »ç¿ëÇØ dbÄÃ·³ÀÇ Á¤º¸¸¦ ÀĞ¾î teacherÀÇ set¸Ş¼­µå¿¡ ¼ÂÆÃÇÑ´Ù.
+				while(resultSet.next()) {//resultSetì˜ next()ë©”ì„œë“œë¥¼ ì‚¬ìš©í•´ dbì»¬ëŸ¼ì˜ ì •ë³´ë¥¼ ì½ì–´ teacherì˜ setë©”ì„œë“œì— ì…‹íŒ…í•œë‹¤.
 					teacher.setTeacher_no(resultSet.getInt("teacher_no"));
 					teacher.setTeacher_id(resultSet.getString("teacher_id"));
 					teacher.setTeacher_pw(resultSet.getString("teacher_pw"));
 				}
 				
-			}catch(ClassNotFoundException e) {//¿¹¿Ü°¡ ¹ß»ıÅğ¸é catchÇÑ´Ù.
+			}catch(ClassNotFoundException e) {//ì˜ˆì™¸ê°€ ë°œìƒí‡´ë©´ catchí•œë‹¤.
 				e.printStackTrace();
 			}catch(SQLException e) {
 				e.printStackTrace();
 			}
-			finally {//½ÇÇàÀÌ ³¡³ª¸é finallyÀÇ if ¹®ÀÌ½ÇÇàµÇ Á¶°ÇÀÌ ¸ÂÀ¸¸é close ÇØÁØ´Ù.
+			finally {//ì‹¤í–‰ì´ ëë‚˜ë©´ finallyì˜ if ë¬¸ì´ì‹¤í–‰ë˜ ì¡°ê±´ì´ ë§ìœ¼ë©´ close í•´ì¤€ë‹¤.
 				if(resultSet !=null) try {resultSet.close();} catch(SQLException e) {}
 				if(statement !=null) try {statement.close();} catch(SQLException e) {}
 				if(connection != null) try {connection.close();} catch(SQLException e) {}
 			}
-		return teacher;//teacher ¸¦ ¸®ÅÏ
+		return teacher;//teacher ë¥¼ ë¦¬í„´
 	}
 	public void updateTeacher(Teacher teacher) {
-		System.out.println("updateTeacher ½ÇÇà");
+		Connection connection=null;
+		PreparedStatement statement=null;
+		System.out.println("updateTeacher ì‹¤í–‰");
 		String sql = "UPDATE teacher SET teacher_id=?,teacher_pw=?  WHERE teacher_no=?";
 		try{
-			connection=Driver.dirverDbcon();//db ¿¬°áÀ» ÇÑ´Ù
-			statement=connection.prepareStatement(sql);//sql Äõ¸®¹® ½ÇÇàÁØºñ¸¦ ÇØÁØ´Ù.
-			statement.setString(1, teacher.getTeacher_id());//sql ¹®À» ¿Ï¼ºÇØÁØ´Ù.
+			connection=Driver.dirverDbcon();//db ì—°ê²°ì„ í•œë‹¤
+			statement=connection.prepareStatement(sql);//sql ì¿¼ë¦¬ë¬¸ ì‹¤í–‰ì¤€ë¹„ë¥¼ í•´ì¤€ë‹¤.
+			statement.setString(1, teacher.getTeacher_id());//sql ë¬¸ì„ ì™„ì„±í•´ì¤€ë‹¤.
 			statement.setString(2, teacher.getTeacher_pw());
 			statement.setInt(3, teacher.getTeacher_no());
-			statement.executeUpdate();//sqlÀ» ½ÇÇàÇÑ´Ù.
+			statement.executeUpdate();//sqlì„ ì‹¤í–‰í•œë‹¤.
 		}catch(ClassNotFoundException e) {
 			e.printStackTrace();
 		}catch(SQLException e) {
@@ -117,7 +124,9 @@ public class TeacherDao {
 		}
 	}
 	public void deleteTeacher(int TeacherNo) {
-		System.out.println("deleteTeacher ½ÇÇà");
+		Connection connection=null;
+		PreparedStatement statement=null;
+		System.out.println("deleteTeacher ì‹¤í–‰");
 		String sql = "DELETE FROM teacher WHERE teacher_no=?";
 		try {
 			connection=Driver.dirverDbcon();

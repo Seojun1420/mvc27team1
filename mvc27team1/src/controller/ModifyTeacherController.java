@@ -15,30 +15,30 @@ public class ModifyTeacherController extends HttpServlet {
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		int teacherNo = (Integer.parseInt(request.getParameter("teacherNo")));//¼öÁ¤¹öÆ°À» ´­·¶À»¶§ teacherNo º¯¼ö¿¡ ÀúÀåµÈ °ªÀ» °¡Á®¿Â´Ù. int Å¸ÀÔÀÌ±â¶§¹®¿¡ Çüº¯È¯À» ÇØÁØ´Ù
-		System.out.println(teacherNo+"<<¹Ş¾Æ¿Â ¾ÆÀÌµğ");
+		int teacherNo = (Integer.parseInt(request.getParameter("teacherNo")));//ìˆ˜ì •ë²„íŠ¼ì„ ëˆŒë €ì„ë•Œ teacherNo ë³€ìˆ˜ì— ì €ì¥ëœ ê°’ì„ ê°€ì ¸ì˜¨ë‹¤. int íƒ€ì…ì´ê¸°ë•Œë¬¸ì— í˜•ë³€í™˜ì„ í•´ì¤€ë‹¤
+		System.out.println(teacherNo+"<<ë°›ì•„ì˜¨ ì•„ì´ë””");
 		TeacherDao teacherDao = new TeacherDao();
-		Teacher teacher =teacherDao.TeacherSelectForUpdate(teacherNo);//teacherDaoÀÇ  TeacherSelectForUpdate ¸Ş¼­µå¸¦ ½ÇÇàÇÏ°í ¸Å°³º¯¼ö·Î  º¯¼ö teacherNo ¸¦ ³Ñ°ÜÁØ´Ù.
-		request.setAttribute("teacher", teacher);//teacher°ªÀ» request¿µ¿ª¿¡ ¼ÂÆÃÇÑ´Ù.
+		Teacher teacher =teacherDao.TeacherSelectForUpdate(teacherNo);//teacherDaoì˜  TeacherSelectForUpdate ë©”ì„œë“œë¥¼ ì‹¤í–‰í•˜ê³  ë§¤ê°œë³€ìˆ˜ë¡œ  ë³€ìˆ˜ teacherNo ë¥¼ ë„˜ê²¨ì¤€ë‹¤.
+		request.setAttribute("teacher", teacher);//teacherê°’ì„ requestì˜ì—­ì— ì…‹íŒ…í•œë‹¤.
 		request.getRequestDispatcher("/WEB-INF/views/modifyTeacherForm.jsp").forward(request, response);
-		//request¿µ¿ª¿¡ ¼ÂÆÃÇÑ °ªÀ» »ç¿ëÇÏ±âÀ§ÇØ request.getRequestDispatcher()¸Ş¼­µå¸¦»ç¿ëÇØ forwardÇÑ´Ù.
+		//requestì˜ì—­ì— ì…‹íŒ…í•œ ê°’ì„ ì‚¬ìš©í•˜ê¸°ìœ„í•´ request.getRequestDispatcher()ë©”ì„œë“œë¥¼ì‚¬ìš©í•´ forwardí•œë‹¤.
 	}
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		int teacherNo = (Integer.parseInt(request.getParameter("teacherNo")));//¼öÁ¤¹öÆ°À» ´­·¶À»¶§ teacherNo º¯¼ö¿¡ ÀúÀåµÈ °ªÀ» °¡Á®¿Â´Ù. int Å¸ÀÔÀÌ±â¶§¹®¿¡ Çüº¯È¯À» ÇØÁØ´Ù
-		String teacherId = request.getParameter("teacherId");//Æû¿¡ ÀÔ·ÂÇÑ ¼öÁ¤ÇÑ ID°ª°ú PW°ªÀ» getParameter¸Ş¼­µå¸¦ »ç¿ëÇØ °¡Á®¿À°í °¢°¢ º¯¼ö¿¡ ÀúÀåÇÑ´Ù.
+		int teacherNo = (Integer.parseInt(request.getParameter("teacherNo")));//ìˆ˜ì •ë²„íŠ¼ì„ ëˆŒë €ì„ë•Œ teacherNo ë³€ìˆ˜ì— ì €ì¥ëœ ê°’ì„ ê°€ì ¸ì˜¨ë‹¤. int íƒ€ì…ì´ê¸°ë•Œë¬¸ì— í˜•ë³€í™˜ì„ í•´ì¤€ë‹¤
+		String teacherId = request.getParameter("teacherId");//í¼ì— ì…ë ¥í•œ ìˆ˜ì •í•œ IDê°’ê³¼ PWê°’ì„ getParameterë©”ì„œë“œë¥¼ ì‚¬ìš©í•´ ê°€ì ¸ì˜¤ê³  ê°ê° ë³€ìˆ˜ì— ì €ì¥í•œë‹¤.
 		String teacherPw = request.getParameter("teacherPw");
 		System.out.println(teacherNo+","+teacherId+","+teacherPw);
-		Teacher teacher =new Teacher();//Teacher °´Ã¼¸¦ »ı¼ºÇÏ°í teacher°´Ã¼ÂüÁ¶º¯¼ö¿¡ ÁÖ¼Ò¸¦ ÇÒ´çÇÑ´Ù.
-		teacher.setTeacher_no(teacherNo);//Teacher°´Ã¼ÀÇ ¼Â¸Ş¼­µå¸¦»ç¿ëÇØ °ªÀ» ¼ÂÆÃÇØÁØ´Ù.
+		Teacher teacher =new Teacher();//Teacher ê°ì²´ë¥¼ ìƒì„±í•˜ê³  teacherê°ì²´ì°¸ì¡°ë³€ìˆ˜ì— ì£¼ì†Œë¥¼ í• ë‹¹í•œë‹¤.
+		teacher.setTeacher_no(teacherNo);//Teacherê°ì²´ì˜ ì…‹ë©”ì„œë“œë¥¼ì‚¬ìš©í•´ ê°’ì„ ì…‹íŒ…í•´ì¤€ë‹¤.
 		teacher.setTeacher_id(teacherId);
 		teacher.setTeacher_pw(teacherPw);
-		TeacherDao teacherDao = new TeacherDao();//TeacherDao °´Ã¼¸¦»ı¼ºÇÏ°í teacherDao°´Ã¼ÂüÁ¶º¯¼ö¿¡ ÁÖ¼Ò¸¦ ÇÒ´çÇÑ´Ù.
-		teacherDao.updateTeacher(teacher);//teacherDao °´Ã¼¿¡ updateTeacher ¸Ş¼­µå¸¦ ½ÇÇàÇÏ°í ¸Å°³º¯¼ö·Î teacher¸¦ ³Ñ°ÜÁØ´Ù.
+		TeacherDao teacherDao = new TeacherDao();//TeacherDao ê°ì²´ë¥¼ìƒì„±í•˜ê³  teacherDaoê°ì²´ì°¸ì¡°ë³€ìˆ˜ì— ì£¼ì†Œë¥¼ í• ë‹¹í•œë‹¤.
+		teacherDao.updateTeacher(teacher);//teacherDao ê°ì²´ì— updateTeacher ë©”ì„œë“œë¥¼ ì‹¤í–‰í•˜ê³  ë§¤ê°œë³€ìˆ˜ë¡œ teacherë¥¼ ë„˜ê²¨ì¤€ë‹¤.
 		response.sendRedirect(request.getContextPath()+"/getTeacherList.jjev");
-		//sendRedirect¸¦ ÀÌ¿ëÇØ ÇØ´ç°æ·Î·Î ÀÌµ¿ÇÑ´Ù.
+		//sendRedirectë¥¼ ì´ìš©í•´ í•´ë‹¹ê²½ë¡œë¡œ ì´ë™í•œë‹¤.
 		
 	}
 

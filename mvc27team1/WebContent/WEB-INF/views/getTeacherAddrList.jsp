@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@page import="java.util.Set"%>
-<%@page import="model.Teacher" %>
+<%@page import="model.TeacherAddr" %>
 <%@page import="java.util.ArrayList" %>
 <html>
 <head>
@@ -18,11 +18,7 @@
 			<thead>
 				<tr>
 					<th>회원번호</th>
-					<th>회원ID</th>
-					<th>회원PW</th>
-					<th>수정</th>
-					<th>삭제</th>
-					<th>ADD TEACHER_ADD</th>
+					<th>Address</th>
 				</tr>
 			</thead>
 		<%
@@ -30,18 +26,14 @@
 			if(request.getAttribute("count")!=null){
 				count=(int)request.getAttribute("count");
 			}
-			ArrayList<Teacher> arrayList=(ArrayList<Teacher>)(request.getAttribute("ArrayList"));
-			for(Teacher teacher:arrayList){
+			ArrayList<TeacherAddr> arrayList=(ArrayList<TeacherAddr>)(request.getAttribute("arrayList"));
+			for(TeacherAddr teacherAddr:arrayList){
 		%>
 				<tbody>
 					<tr>
-						<td><%=teacher.getTeacher_no() %></td>
-						<td><%=teacher.getTeacher_id() %></td>
-						<td>****</td>
-						<td><a href="<%=request.getContextPath()%>/modifyTeacher.jjdev?teacherNo=<%=teacher.getTeacher_no()%>">수정</a></td>
-						<td><a href="<%=request.getContextPath()%>/removeTeacher.jjdev?teacherNo=<%=teacher.getTeacher_no()%>">삭제</a></td>
-						<td><span><a href="<%=request.getContextPath()%>/addAdressTeacher.jjdev?teacherNo=<%=teacher.getTeacher_no()%>">주소추가</a></span></td>
-					</tr>
+						<td><%=teacherAddr.getTeacherNo() %></td>
+						<td><%=teacherAddr.getAddress() %></td>
+					</tr>	
 				</tbody>
 		<%
 			}

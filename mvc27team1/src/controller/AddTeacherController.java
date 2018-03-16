@@ -14,25 +14,25 @@ import model.TeacherDao;
 public class AddTeacherController extends HttpServlet {
 	private TeacherDao teacherDao;
 
-	//teacher ÀÔ·Â Æû
+	//teacher ì…ë ¥ í¼
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		request.getRequestDispatcher("/WEB-INF/views/addTeacher.jsp").forward(request, response);
 	}
 
-	//teacher ÀÔ·Â
+	//teacher ì…ë ¥
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		//form ¿¡¼­ ³Ñ¾î¿Â  id ,pw ÀÇ ÀÔ·Â°ªÀ» °¢°¢ º¯¼ö¿¡ ÀúÀåÇÏ°í Teacher °´Ã¼¿¡ °¢°¢ º¯¼öÀÇ °ªÀ» ¼ÂÆÃÇØÁØ´Ù
+		//form ì—ì„œ ë„˜ì–´ì˜¨  id ,pw ì˜ ì…ë ¥ê°’ì„ ê°ê° ë³€ìˆ˜ì— ì €ì¥í•˜ê³  Teacher ê°ì²´ì— ê°ê° ë³€ìˆ˜ì˜ ê°’ì„ ì…‹íŒ…í•´ì¤€ë‹¤
 		String teacherId = request.getParameter("teacherId");
 		String teacherPw = request.getParameter("teacherPw");
 		Teacher teacher = new Teacher();
 		teacher.setTeacher_id(teacherId);
 		teacher.setTeacher_pw(teacherPw);
 		this.teacherDao = new TeacherDao();
-		//teacherDao ÀÇ insertTeacher ¸Ş¼­µå¸¦ ½ÇÇàÇØÁÖ°í  ¸Å°³º¯¼ö·Î teacher ¸¦ ÁØ´Ù.
+		//teacherDao ì˜ insertTeacher ë©”ì„œë“œë¥¼ ì‹¤í–‰í•´ì£¼ê³   ë§¤ê°œë³€ìˆ˜ë¡œ teacher ë¥¼ ì¤€ë‹¤.
 		teacherDao.insertTeacher(teacher);
-		//sendRedirect ¸¦ ÀÌ¿ëÇØ ÇØ´ç°æ·Î·Î °£´Ù.
+		//sendRedirect ë¥¼ ì´ìš©í•´ í•´ë‹¹ê²½ë¡œë¡œ ê°„ë‹¤.
 		response.sendRedirect(request.getContextPath()+"/getTeacherList.jjev");
 	}
 }
