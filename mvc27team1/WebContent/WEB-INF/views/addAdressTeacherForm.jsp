@@ -7,6 +7,7 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 	<title>addAdressTeacher</title>
 </head>
+
 <body>
 	<div class="col-sm-3"></div>
 	<div class="col-sm-6">
@@ -21,6 +22,7 @@
 				</thead>
 				<%
 					TeacherAddr teacherAddr = (TeacherAddr)request.getAttribute("teacherAddr");
+					
 				%>
 				<tbody>
 					<input type="hidden" name="teacherNo" value=<%=teacherAddr.getTeacherNo()%>>

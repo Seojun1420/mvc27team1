@@ -15,9 +15,10 @@
 	</style>
 	<script>
 		$(document).ready(function(){
+
 			$('#btn').click(function(){
 				if($('#teacherId').val().length < 4) {
-					$('#banHelper').text("아이디 4자이상입력하시오");
+					$('#banHelper').popover('show');
 					return;
 				}else if($('#teacherPw').val().length < 4) {
 					$('#banHelper').text("비밀번호 4자이상입력하시오");
@@ -43,7 +44,7 @@
 			<div class="form-group">
 				<label class="col-sm-3 control-label">teacher_id</label>
 				<div class="col-sm-9">
-					<input type="text" id="teacherId" name="teacherId"class="form-control" placeholder="ID입력"> 
+					<input type="text" id="teacherId" name="teacherId" class="form-control" placeholder="ID입력" data-toggle="tooltip" data-placement="left" title="Tooltip on left"> 
 				</div>
 			</div>
 			<div class="form-group">
@@ -58,7 +59,7 @@
 					<input type="password" id="teacherPwCheck" name="teacherPwCheck" class="form-control" placeholder="PW확인">
 				</div>
 			</div>
-			<span id="banHelper"></span>
+			<span id="banHelper" data-toggle="popover" data-trigger="focus" title="Dismissible popover" data-content="And here's some amazing content. It's very engaging. Right?"></span>
 			<div style="text-align:center;">
 				<button id="btn" type="button" class="btn btn-default">게스트추가</button>
 			</div>
