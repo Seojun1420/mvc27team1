@@ -1,6 +1,6 @@
 package driver;
 
-//µå¶óÀÌ¹ö¿¡ ÇÊ¿äÇÑ ÆÄÀÏÀ»  import ÇØÁØ´Ù
+//ë“œë¼ì´ë²„ì— í•„ìš”í•œ íŒŒì¼ì„  import í•´ì¤€ë‹¤
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -10,16 +10,16 @@ public class Driver {
 		
 		Connection connection = null;
 		
-		//mysql µå¶óÀÌ¹ö ·Îµù
+		//mysql ë“œë¼ì´ë²„ ë¡œë”©
 		Class.forName("com.mysql.jdbc.Driver");
 		
-		//mysql ¿¬°áÀ» À§ÇØ ip, port, dbid, dbpw, db¸í ÀÔ·Â
+		//mysql ì—°ê²°ì„ ìœ„í•´ ip, port, dbid, dbpw, dbëª… ì…ë ¥
 		String jdbcDriver ="jdbc:mysql://localhost:3306/mvc?useUnicode=true&characterEncoding=utf-8";
 		String dbUser = "root";
 		String dbPass = "java0000";
 	
-		/* DriverManger Å¬·¡½ºÀÇ getConnection ¸Ş¼­µå È£ÃâÇÑ´Ù .
-	     * ÀÌ¶§  jdbcDriver, dbUser, dbpass¸¦ ¸Å°³º¯¼ö °ªÀ¸·Î º¸³½´Ù.
+		/* DriverManger í´ë˜ìŠ¤ì˜ getConnection ë©”ì„œë“œ í˜¸ì¶œí•œë‹¤ .
+	     * ì´ë•Œ  jdbcDriver, dbUser, dbpassë¥¼ ë§¤ê°œë³€ìˆ˜ ê°’ìœ¼ë¡œ ë³´ë‚¸ë‹¤.
 	     */
 		connection = DriverManager.getConnection(jdbcDriver, dbUser, dbPass);
 	

@@ -14,9 +14,9 @@ public class RemoveEmployeeController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		System.out.println("DeleteEmployeeController doGet ¸Þ¼­µå ½ÇÇà");
+		System.out.println("DeleteEmployeeController doGet Â¸ÃžÂ¼Â­ÂµÃ¥ Â½Ã‡Ã‡Ã ");
 		int employeeNo = Integer.parseInt(request.getParameter("employeeNo"));
-		System.out.println(employeeNo+"<--- ³Ñ°Ü¹ÞÀº employeeNo");
+		System.out.println(employeeNo+"<--- Â³Ã‘Â°ÃœÂ¹ÃžÃ€Âº employeeNo");
 		EmployeeDao employeedao = new EmployeeDao();
 		employeedao.deleteEmployee(employeeNo);
 		

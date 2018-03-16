@@ -14,30 +14,30 @@ import model.EmployeeDao;
 @WebServlet("/modifyEmployee.jjdev")
 public class ModifyEmployeeController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//È¸¿ø¼öÁ¤ ¿äÃ»ÀÌ µé¾î¿ÓÀ»¶§ ¼öÁ¤formÀ» º¸¿©ÁØ´Ù.
+		//íšŒì›ìˆ˜ì • ìš”ì²­ì´ ë“¤ì–´ì™“ì„ë•Œ ìˆ˜ì •formì„ ë³´ì—¬ì¤€ë‹¤.
 		request.setCharacterEncoding("UTF-8");
-		System.out.println("modifyEmployeeController doGet ¸Ş¼­µå ½ÇÇà");
+		System.out.println("modifyEmployeeController doGet ë©”ì„œë“œ ì‹¤í–‰");
 		int employeeNo = Integer.parseInt(request.getParameter("employeeNo"));
-		System.out.println(employeeNo+"<--- ³Ñ°Ü¹ŞÀº employeeNo");
-		//list¿¡¼­ ¼öÁ¤¹öÆ°À» ´©¸£¸é get¹æ½ÄÀ¸·Î employeeNo°ªÀÌ ³Ñ¾î¿Â´Ù.
+		System.out.println(employeeNo+"<--- ë„˜ê²¨ë°›ì€ employeeNo");
+		//listì—ì„œ ìˆ˜ì •ë²„íŠ¼ì„ ëˆ„ë¥´ë©´ getë°©ì‹ìœ¼ë¡œ employeeNoê°’ì´ ë„˜ì–´ì˜¨ë‹¤.
 		EmployeeDao employeedao = new EmployeeDao();
 		Employee employee = employeedao.employeeSelectForUpdate(employeeNo);
-		//employeeSelectForUpdate ¸Ş¼­µå¸¦ ÅëÇØ ³Ñ°Ü¹ŞÀº employeeNoÀÇ Á¤º¸¸¦ return ¹Ş¾Æ employee°´Ã¼¿¡ ´ã´Â´Ù.
+		//employeeSelectForUpdate ë©”ì„œë“œë¥¼ í†µí•´ ë„˜ê²¨ë°›ì€ employeeNoì˜ ì •ë³´ë¥¼ return ë°›ì•„ employeeê°ì²´ì— ë‹´ëŠ”ë‹¤.
 		request.setAttribute("employee", employee);
 		request.getRequestDispatcher("/WEB-INF/views/modifyEmployeeForm.jsp").forward(request, response);
-		//ÇÑ¸íÀÇ È¸¿øÁ¤º¸¸¦ ´ãÀº employee 
+		//í•œëª…ì˜ íšŒì›ì •ë³´ë¥¼ ë‹´ì€ employee 
 		
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		System.out.println("modifyEmployeeController doPost ¸Ş¼­µå ½ÇÇà");
+		System.out.println("modifyEmployeeController doPost ë©”ì„œë“œ ì‹¤í–‰");
 		Employee employee = new Employee();
 		int modifyEmployeeNo = Integer.parseInt(request.getParameter("modifyEmployeeNo"));
 		String modifyEmployeeId = request.getParameter("modifyEmployeeId");
 		String modifyEmployeePw = request.getParameter("modifyEmployeePw");
-		System.out.println(modifyEmployeeNo+"<--- ³Ñ°Ü¹ŞÀº modifyEmployeeNo");
-		System.out.println(modifyEmployeeId+"<--- ³Ñ°Ü¹ŞÀº modifyEmployeeId");
-		System.out.println(modifyEmployeePw+"<--- ³Ñ°Ü¹ŞÀº modifyEmployeePw");
+		System.out.println(modifyEmployeeNo+"<--- ë„˜ê²¨ë°›ì€ modifyEmployeeNo");
+		System.out.println(modifyEmployeeId+"<--- ë„˜ê²¨ë°›ì€ modifyEmployeeId");
+		System.out.println(modifyEmployeePw+"<--- ë„˜ê²¨ë°›ì€ modifyEmployeePw");
 		
 		employee.setEmployee_no(modifyEmployeeNo);
 		employee.setEmployee_id(modifyEmployeeId);

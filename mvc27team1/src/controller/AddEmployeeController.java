@@ -1,4 +1,4 @@
-//mvc27team1 µµÁ¤¸¸
+//mvc27team1 ë„ì •ë§Œ
 package controller;
 
 import java.io.IOException;
@@ -13,28 +13,28 @@ import model.Employee;
 @WebServlet("/addEmployee.jjdev")
 public class AddEmployeeController extends HttpServlet {
 	private EmployeeDao employeeDao;
-	// employee ÀÔ·Â Æû¿äÃ»
+	// employee ì…ë ¥ í¼ìš”ì²­
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getRequestDispatcher("/WEB-INF/views/addEmployee.jsp").forward(request, response);		
 	}
-	//employee ÀÔ·Â
+	//employee ì…ë ¥
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String addEmployeeId = request.getParameter("addEmployeeId");
 		String addEmployeePw = request.getParameter("addEmployeePw");
 		System.out.println(addEmployeeId+"<-- addEmployeeId");
 		System.out.println(addEmployeePw+"<-- addEmployeePw");
-		// form¿¡¼­ ÀÔ·Â¹ŞÀº id¿Í pw¸¦ request.getparameter·Î ¹ŞÀºÈÄ 
+		// formì—ì„œ ì…ë ¥ë°›ì€ idì™€ pwë¥¼ request.getparameterë¡œ ë°›ì€í›„ 
 		Employee employee = new Employee();
 		employee.setEmployee_id(addEmployeeId);
 		employee.setEmployee_pw(addEmployeePw);
-		// employee °´Ã¼¸¦ »ı¼ºÈÄ employee °´Ã¼ ³»ºÎ¿¡ ¼ÂÆÃÇÑ´Ù.
+		// employee ê°ì²´ë¥¼ ìƒì„±í›„ employee ê°ì²´ ë‚´ë¶€ì— ì…‹íŒ…í•œë‹¤.
 		
 		this.employeeDao = new EmployeeDao();
 		employeeDao.insertEmployee(employee);
-		//È¸¿øÁ¤º¸¸¦ db¿¡ ÀÔ·ÂÇÏ±â À§ÇØ EmployeeDao Å¬·¡½ºÀÇ insertEmployee ¸Ş¼­µå¸¦ È£ÃâÇØÁØ´Ù.
+		//íšŒì›ì •ë³´ë¥¼ dbì— ì…ë ¥í•˜ê¸° ìœ„í•´ EmployeeDao í´ë˜ìŠ¤ì˜ insertEmployee ë©”ì„œë“œë¥¼ í˜¸ì¶œí•´ì¤€ë‹¤.
 		
 		response.sendRedirect(request.getContextPath() + "/getEmployeeList.jjdev");
-		//¸ğµç¿äÃ»ÀÌ ³¡³´À¸¹Ç·Î listÈ­¸éÀ¸·Î response.sendRedirect ÇØÁØ´Ù.
+		//ëª¨ë“ ìš”ì²­ì´ ëë‚«ìœ¼ë¯€ë¡œ listí™”ë©´ìœ¼ë¡œ response.sendRedirect í•´ì¤€ë‹¤.
 	}
 
 }

@@ -12,45 +12,42 @@ import model.EmployeeAddrDao;
 
 
 @WebServlet("/addAddressEmployee.jjdev")
-public class AddAddressEmployeeController extends HttpServlet {
+public class AddEmployeeAddrController extends HttpServlet {
 	EmployeeAddrDao employeeAddrDao = null;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		System.out.println("AddAddressEmployeeController doGet ∏ﬁº≠µÂ Ω««‡");
+		System.out.println("AddAddressEmployeeController doGet Î©îÏÑúÎìú Ïã§Ìñâ");
 		int employeeNo = Integer.parseInt(request.getParameter("employeeNo"));
-		System.out.println(employeeNo+"<--- ≥—∞‹πﬁ¿∫ employeeNo");
+		System.out.println(employeeNo+"<--- ÎÑòÍ≤®Î∞õÏùÄ employeeNo");
 		
 		employeeAddrDao = new EmployeeAddrDao();
 		int count = employeeAddrDao.countEmployeeAddr(employeeNo);
 		
 		
 		if(count >= 5) {
-			System.out.println("µÓ∑œ∫“∞°");
-			request.setAttribute("count", count);
-			request.getRequestDispatcher("/getEmployeeList.jjdev").forward(request, response);
+			System.out.println("Îì±Î°ùÎ∂àÍ∞Ä");
+			request.setAttribute("employeeNo", employeeNo);
+			request.getRequestDispatcher("/getEmployeeAddrList.jjdev").forward(request, response);
 		}else {
-			System.out.println("µÓ∑œ∞°¥…");
+			System.out.println("Îì±Î°ùÍ∞ÄÎä•");
 			request.setAttribute("employeeNo", employeeNo);
 			request.getRequestDispatcher("/WEB-INF/views/addAddressEmployee.jsp").forward(request, response);	
-		}
-		
-		
+		}				
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		System.out.println("AddAddressEmployeeController doPost ∏ﬁº≠µÂ Ω««‡");
+		System.out.println("AddAddressEmployeeController doPost Î©îÏÑúÎìú Ïã§Ìñâ");
 		int employeeNo = Integer.parseInt(request.getParameter("employeeNo"));
 		String employeeAddr = request.getParameter("employeeAddr");
-		System.out.println(employeeNo+"<--- ≥—∞‹πﬁ¿∫ employeeNo");
-		System.out.println(employeeAddr+"<--- ≥—∞‹πﬁ¿∫ employeeAddr");
+		System.out.println(employeeNo+"<--- ÎÑòÍ≤®Î∞õÏùÄ employeeNo");
+		System.out.println(employeeAddr+"<--- ÎÑòÍ≤®Î∞õÏùÄ employeeAddr");
 		EmployeeAddr employeeaddr = new EmployeeAddr();
 		employeeaddr.setEmployeeNo(employeeNo);
 		employeeaddr.setAddress(employeeAddr);
 		
 		employeeAddrDao = new EmployeeAddrDao();
-		employeeAddrDao.insertEmployeeAddr(employeeaddr);
+		employeeAddrDao.addEmployeeAddr(employeeaddr);
 		
-		response.sendRedirect(request.getContextPath() + "/getEmployeeList.jjdev");
-		
+		response.sendRedirect(request.getContextPath() + "/getEmployeeList.jjdev");		
 	}
 }

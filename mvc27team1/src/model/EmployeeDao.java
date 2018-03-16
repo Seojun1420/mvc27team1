@@ -1,4 +1,3 @@
-//mvc27team1 µµÁ¤¸¸
 package model;
 
 import java.sql.PreparedStatement;
@@ -15,26 +14,26 @@ public class EmployeeDao {
 
 	public Employee employeeSelectForUpdate(int employeeNo) {
 		/*
-		 * employeeSelectForUpdate ¸Ş¼­µå´Â È¸¿ø¼öÁ¤¹öÆ°À» ´­·µÀ»¶§ Á¤º¸¸¦ formÈ­¸éÀ¸·Î »Ñ·ÁÁÖ±âÀ§ÇØ ÇÑ¸íÀÇÈ¸¿øÁ¤º¸¸¦ selectÇÏ±â À§ÇÑ ¸Ş¼­µå
-		 * Employee Å¬·¡½º Å¸ÀÔÀÇ employee¸¦ ¸®ÅÏÇÏ°í, ¸Å°³º¯¼ö·Î intÇü Å¸ÀÔÀÇ employeeNo¸¦ ¹Ş´Â´Ù.
+		 * employeeSelectForUpdate ë©”ì„œë“œëŠ” íšŒì›ìˆ˜ì •ë²„íŠ¼ì„ ëˆŒëŸ¿ì„ë•Œ ì •ë³´ë¥¼ formí™”ë©´ìœ¼ë¡œ ë¿Œë ¤ì£¼ê¸°ìœ„í•´ í•œëª…ì˜íšŒì›ì •ë³´ë¥¼ selectí•˜ê¸° ìœ„í•œ ë©”ì„œë“œ
+		 * Employee í´ë˜ìŠ¤ íƒ€ì…ì˜ employeeë¥¼ ë¦¬í„´í•˜ê³ , ë§¤ê°œë³€ìˆ˜ë¡œ intí˜• íƒ€ì…ì˜ employeeNoë¥¼ ë°›ëŠ”ë‹¤.
 		 */
 		try {
 			connection = Driver.dirverDbcon();
 			/* 
-		     * db¿¬°áÀ» À§ÇØ Driver Å¬·¡½ºÀÇ dirverDbcon ¸Ş¼­µå È£ÃâÇÑ´Ù .
+		     * dbì—°ê²°ì„ ìœ„í•´ Driver í´ë˜ìŠ¤ì˜ dirverDbcon ë©”ì„œë“œ í˜¸ì¶œí•œë‹¤ .
 		     */
 			String sql = "SELECT employee_no, employee_id, employee_pw FROM employee WHERE employee_no=?";
 			
 			statement = connection.prepareStatement(sql);
-			//connection °´Ã¼ ÂüÁ¶ º¯¼ö¿¡ ÇÒ´çµÈ ÂüÁ¶°ªÀ» Ã£¾Æ°¡ prepareStatement¸Ş¼­µå¸¦½ÇÇàÇÏ°í ÁØºñµÈ Äõ¸®¹®À» ÀÔ·ÂÇÑ´Ù.
+			//connection ê°ì²´ ì°¸ì¡° ë³€ìˆ˜ì— í• ë‹¹ëœ ì°¸ì¡°ê°’ì„ ì°¾ì•„ê°€ prepareStatementë©”ì„œë“œë¥¼ì‹¤í–‰í•˜ê³  ì¤€ë¹„ëœ ì¿¼ë¦¬ë¬¸ì„ ì…ë ¥í•œë‹¤.
 			statement.setInt(1, employeeNo);
-			//Äõ¸® ¿Ï¼º
+			//ì¿¼ë¦¬ ì™„ì„±
 			
 			resultSet = statement.executeQuery();
-			System.out.println("<--04 Äõ¸®½ÇÇà");
+			System.out.println("<--04 ì¿¼ë¦¬ì‹¤í–‰");
 			/*
-		     * statement °´Ã¼ÂüÁ¶ º¯¼ö¿¡ ÇÒ´çµÈ ÂüÁ¶°ªÀ» Ã£¾Æ°¡ executeQuery ¸Ş¼­µå¸¦ È£ÃâÇÏ¸é ÁØºñµÈ Äõ¸® ½ÇÇà ÈÄ
-		     *  ½ÇÇà°á°ú¸¦ resultSet °´Ã¼ÂüÁ¶º¯¼ö¿¡ ÂüÁ¶°ªÀ» ÇÒ´çÇÑ´Ù.		    
+		     * statement ê°ì²´ì°¸ì¡° ë³€ìˆ˜ì— í• ë‹¹ëœ ì°¸ì¡°ê°’ì„ ì°¾ì•„ê°€ executeQuery ë©”ì„œë“œë¥¼ í˜¸ì¶œí•˜ë©´ ì¤€ë¹„ëœ ì¿¼ë¦¬ ì‹¤í–‰ í›„
+		     *  ì‹¤í–‰ê²°ê³¼ë¥¼ resultSet ê°ì²´ì°¸ì¡°ë³€ìˆ˜ì— ì°¸ì¡°ê°’ì„ í• ë‹¹í•œë‹¤.		    
 		     */
 			
 			if(resultSet.next()) {
@@ -44,12 +43,12 @@ public class EmployeeDao {
 				employee.setEmployee_pw(resultSet.getString("employee_pw"));
 			}
 		
-		}catch(ClassNotFoundException e) { //¿¹¿ÜÃ³¸® Class.forName
+		}catch(ClassNotFoundException e) { //ì˜ˆì™¸ì²˜ë¦¬ Class.forName
 			e.printStackTrace();			
 		}catch(SQLException e) {// jdbc
 			e.printStackTrace();
 		}finally {
-			if(resultSet != null) try {resultSet.close();} catch(SQLException e) {} //¼ø¼­´ë·Î °¡Àå ´Ê°Ô ½ÇÇàµÈ °´Ã¼ºÎÅÍ ´İ¾ÆÁØ´Ù.
+			if(resultSet != null) try {resultSet.close();} catch(SQLException e) {} //ìˆœì„œëŒ€ë¡œ ê°€ì¥ ëŠ¦ê²Œ ì‹¤í–‰ëœ ê°ì²´ë¶€í„° ë‹«ì•„ì¤€ë‹¤.
 			if(statement != null) try{statement.close();} catch(SQLException e) {}
 			if(connection != null) try{connection.close();} catch(SQLException e) {}
 		}
@@ -57,86 +56,86 @@ public class EmployeeDao {
 	}
 	public void deleteEmployee(int employeeNo) {
 		/*
-		 * deleteEmployee ¸Ş¼­µå´Â È¸¿ø»èÁ¦¸¦ ÇÏ´Â ¸Ş¼­µå
-		 * ¸Å°³º¯¼ö·Î intÇü Å¸ÀÔÀÇ employeeNo¸¦ ¹Ş¾Æ¼­ ÇØ´ç employeeNoÀÇ ¸ğµçÁ¤º¸¸¦ »èÁ¦ÇÑ´Ù
+		 * deleteEmployee ë©”ì„œë“œëŠ” íšŒì›ì‚­ì œë¥¼ í•˜ëŠ” ë©”ì„œë“œ
+		 * ë§¤ê°œë³€ìˆ˜ë¡œ intí˜• íƒ€ì…ì˜ employeeNoë¥¼ ë°›ì•„ì„œ í•´ë‹¹ employeeNoì˜ ëª¨ë“ ì •ë³´ë¥¼ ì‚­ì œí•œë‹¤
 		 */
 		try {
 			connection = Driver.dirverDbcon();
 			
 			String sql = "DELETE FROM employee WHERE employee_no=?";
 			statement = connection.prepareStatement(sql);
-			//connection °´Ã¼ ÂüÁ¶ º¯¼ö¿¡ ÇÒ´çµÈ ÂüÁ¶°ªÀ» Ã£¾Æ°¡ prepareStatement¸Ş¼­µå¸¦½ÇÇàÇÏ°í ÁØºñµÈ Äõ¸®¹®À» ÀÔ·ÂÇÑ´Ù.	
+			//connection ê°ì²´ ì°¸ì¡° ë³€ìˆ˜ì— í• ë‹¹ëœ ì°¸ì¡°ê°’ì„ ì°¾ì•„ê°€ prepareStatementë©”ì„œë“œë¥¼ì‹¤í–‰í•˜ê³  ì¤€ë¹„ëœ ì¿¼ë¦¬ë¬¸ì„ ì…ë ¥í•œë‹¤.	
 
 			statement.setInt(1, employeeNo);
-			//Äõ¸® ¿Ï¼º
+			//ì¿¼ë¦¬ ì™„ì„±
 			
 			statement.executeUpdate();
-			//DELETE Äõ¸®¹® ÀÌ¹Ç·Î executeUpdate ¸Ş¼­µå¸¦ ½ÇÇàÇØ Äõ¸®¸¦ ½ÇÇà½ÃÄÑÁØ´Ù.
+			//DELETE ì¿¼ë¦¬ë¬¸ ì´ë¯€ë¡œ executeUpdate ë©”ì„œë“œë¥¼ ì‹¤í–‰í•´ ì¿¼ë¦¬ë¥¼ ì‹¤í–‰ì‹œì¼œì¤€ë‹¤.
 			
-		}catch(ClassNotFoundException e) { //¿¹¿ÜÃ³¸® Class.forName
+		}catch(ClassNotFoundException e) { //ì˜ˆì™¸ì²˜ë¦¬ Class.forName
 			e.printStackTrace();			
 		}catch(SQLException e) {// jdbc
 			e.printStackTrace();
 		}finally {
-			if(statement != null) try{statement.close();} catch(SQLException e) {} //¼ø¼­´ë·Î °¡Àå ´Ê°Ô ½ÇÇàµÈ °´Ã¼ºÎÅÍ ´İ¾ÆÁØ´Ù.
+			if(statement != null) try{statement.close();} catch(SQLException e) {} //ìˆœì„œëŒ€ë¡œ ê°€ì¥ ëŠ¦ê²Œ ì‹¤í–‰ëœ ê°ì²´ë¶€í„° ë‹«ì•„ì¤€ë‹¤.
 			if(connection != null) try{connection.close();} catch(SQLException e) {}
 		}
 	}
 	public void updateEmployee(Employee employee) {
 		/*
-		 * updateEmployee ¸Ş¼­µå´Â º¯°æµÈ Á¤º¸¸¦ ¹Ş¾Æ¿Í db¿¡ Àû¿ë ½ÃÅ°´Â ¸Ş¼­µå
-		 * ¸Å°³º¯¼ö·Î EmployeeÅ¬·¡½ºÇü Å¸ÀÔÀÇ employee¸¦ ¹Ş¾Æ¿Â´Ù.
+		 * updateEmployee ë©”ì„œë“œëŠ” ë³€ê²½ëœ ì •ë³´ë¥¼ ë°›ì•„ì™€ dbì— ì ìš© ì‹œí‚¤ëŠ” ë©”ì„œë“œ
+		 * ë§¤ê°œë³€ìˆ˜ë¡œ Employeeí´ë˜ìŠ¤í˜• íƒ€ì…ì˜ employeeë¥¼ ë°›ì•„ì˜¨ë‹¤.
 		 */
 		try {
 			connection = Driver.dirverDbcon();
 			
 			String sql = "UPDATE employee set employee_id=?, employee_pw=? WHERE employee_no=?";
 			statement = connection.prepareStatement(sql);
-			//connection °´Ã¼ ÂüÁ¶ º¯¼ö¿¡ ÇÒ´çµÈ ÂüÁ¶°ªÀ» Ã£¾Æ°¡ prepareStatement¸Ş¼­µå¸¦½ÇÇàÇÏ°í ÁØºñµÈ Äõ¸®¹®À» ÀÔ·ÂÇÑ´Ù.	
+			//connection ê°ì²´ ì°¸ì¡° ë³€ìˆ˜ì— í• ë‹¹ëœ ì°¸ì¡°ê°’ì„ ì°¾ì•„ê°€ prepareStatementë©”ì„œë“œë¥¼ì‹¤í–‰í•˜ê³  ì¤€ë¹„ëœ ì¿¼ë¦¬ë¬¸ì„ ì…ë ¥í•œë‹¤.	
 
 			statement.setString(1, employee.getEmployee_id());
 			statement.setString(2, employee.getEmployee_pw());
 			statement.setInt(3, employee.getEmployee_no());
-			//Äõ¸® ¿Ï¼º
+			//ì¿¼ë¦¬ ì™„ì„±
 			
 			statement.executeUpdate();
-			//UPDATE Äõ¸®¹® ÀÌ¹Ç·Î executeUpdate ¸Ş¼­µå¸¦ ½ÇÇàÇØ Äõ¸®¸¦ ½ÇÇà½ÃÄÑÁØ´Ù.
+			//UPDATE ì¿¼ë¦¬ë¬¸ ì´ë¯€ë¡œ executeUpdate ë©”ì„œë“œë¥¼ ì‹¤í–‰í•´ ì¿¼ë¦¬ë¥¼ ì‹¤í–‰ì‹œì¼œì¤€ë‹¤.
 			
-		}catch(ClassNotFoundException e) { //¿¹¿ÜÃ³¸® Class.forName
+		}catch(ClassNotFoundException e) { //ì˜ˆì™¸ì²˜ë¦¬ Class.forName
 			e.printStackTrace();			
 		}catch(SQLException e) {// jdbc
 			e.printStackTrace();
 		}finally {
-			if(statement != null) try{statement.close();} catch(SQLException e) {} //¼ø¼­´ë·Î °¡Àå ´Ê°Ô ½ÇÇàµÈ °´Ã¼ºÎÅÍ ´İ¾ÆÁØ´Ù.
+			if(statement != null) try{statement.close();} catch(SQLException e) {} //ìˆœì„œëŒ€ë¡œ ê°€ì¥ ëŠ¦ê²Œ ì‹¤í–‰ëœ ê°ì²´ë¶€í„° ë‹«ì•„ì¤€ë‹¤.
 			if(connection != null) try{connection.close();} catch(SQLException e) {}
 		}
 	}
 	public ArrayList<Employee> selectEmployee() {
 		/*
-		 * selectEmployee ¸Ş¼­µå´Â db¿¡ ÀúÀåµÈ Á÷¿øÀÇ id¿Í pw¸¦ º¸¿© ÁÖ´Â ¸Ş¼­µå.
-		 * Employee Å¬·¡½º Å¸ÀÔÀÇ ArrayList¸¦ ¸®ÅÏÇÑ´Ù.
+		 * selectEmployee ë©”ì„œë“œëŠ” dbì— ì €ì¥ëœ ì§ì›ì˜ idì™€ pwë¥¼ ë³´ì—¬ ì£¼ëŠ” ë©”ì„œë“œ.
+		 * Employee í´ë˜ìŠ¤ íƒ€ì…ì˜ ArrayListë¥¼ ë¦¬í„´í•œë‹¤.
 		 */
 		ArrayList<Employee> list = new ArrayList<Employee>();
-		System.out.println("¸®½ºÆ® ¸Ş¼­µå ½ÇÇà");
+		System.out.println("ë¦¬ìŠ¤íŠ¸ ë©”ì„œë“œ ì‹¤í–‰");
 		
 		try {
 			connection = Driver.dirverDbcon();
 			/* 
-		     * db¿¬°áÀ» À§ÇØ Driver Å¬·¡½ºÀÇ dirverDbcon ¸Ş¼­µå È£ÃâÇÑ´Ù .
+		     * dbì—°ê²°ì„ ìœ„í•´ Driver í´ë˜ìŠ¤ì˜ dirverDbcon ë©”ì„œë“œ í˜¸ì¶œí•œë‹¤ .
 		     */
 			String sql = "SELECT employee_no,employee_id FROM employee";
 			statement = connection.prepareStatement(sql);			
-			//connection °´Ã¼ ÂüÁ¶ º¯¼ö¿¡ ÇÒ´çµÈ ÂüÁ¶°ªÀ» Ã£¾Æ°¡ prepareStatement¸Ş¼­µå¸¦½ÇÇàÇÏ°í ÁØºñµÈ Äõ¸®¹®À» ÀÔ·ÂÇÑ´Ù.	
+			//connection ê°ì²´ ì°¸ì¡° ë³€ìˆ˜ì— í• ë‹¹ëœ ì°¸ì¡°ê°’ì„ ì°¾ì•„ê°€ prepareStatementë©”ì„œë“œë¥¼ì‹¤í–‰í•˜ê³  ì¤€ë¹„ëœ ì¿¼ë¦¬ë¬¸ì„ ì…ë ¥í•œë‹¤.	
 			
 			resultSet = statement.executeQuery();			
 			/*
-		     * statement °´Ã¼ÂüÁ¶ º¯¼ö¿¡ ÇÒ´çµÈ ÂüÁ¶°ªÀ» Ã£¾Æ°¡ executeQuery ¸Ş¼­µå¸¦ È£ÃâÇÏ¸é ÁØºñµÈ Äõ¸® ½ÇÇà ÈÄ
-		     *  ½ÇÇà°á°ú¸¦ resultSet °´Ã¼ÂüÁ¶º¯¼ö¿¡ ÂüÁ¶°ªÀ» ÇÒ´çÇÑ´Ù.		    
+		     * statement ê°ì²´ì°¸ì¡° ë³€ìˆ˜ì— í• ë‹¹ëœ ì°¸ì¡°ê°’ì„ ì°¾ì•„ê°€ executeQuery ë©”ì„œë“œë¥¼ í˜¸ì¶œí•˜ë©´ ì¤€ë¹„ëœ ì¿¼ë¦¬ ì‹¤í–‰ í›„
+		     *  ì‹¤í–‰ê²°ê³¼ë¥¼ resultSet ê°ì²´ì°¸ì¡°ë³€ìˆ˜ì— ì°¸ì¡°ê°’ì„ í• ë‹¹í•œë‹¤.		    
 		     */
 			while(resultSet.next()) {
 				/*  
-		    	 * while¹®À» »ç¿ëÇØ¼­ ResultSet °´Ã¼³»ºÎÀÇ next ¸Ş¼­µå¸¦ È£ÃâÇÏ¸é ½ÇÇà°á°ú°¡ ÀÖ´Ù¸é trueÀÓÀ¸·Î 
-		    	 * while¹® ¾ÈÀÇ ºí·°ÀÌ ½ÇÇàµÈ´Ù. ±×¸®°í ´ÙÀ½ ½ÇÇà°á°ú¸¦ È®ÀÎÇØ¼­ true ÀÌ¸é ¹İº¹À» false ÀÌ¸é while¹®À» Á¾·á ÇÏ°Ô µÈ´Ù.
+		    	 * whileë¬¸ì„ ì‚¬ìš©í•´ì„œ ResultSet ê°ì²´ë‚´ë¶€ì˜ next ë©”ì„œë“œë¥¼ í˜¸ì¶œí•˜ë©´ ì‹¤í–‰ê²°ê³¼ê°€ ìˆë‹¤ë©´ trueì„ìœ¼ë¡œ 
+		    	 * whileë¬¸ ì•ˆì˜ ë¸”ëŸ­ì´ ì‹¤í–‰ëœë‹¤. ê·¸ë¦¬ê³  ë‹¤ìŒ ì‹¤í–‰ê²°ê³¼ë¥¼ í™•ì¸í•´ì„œ true ì´ë©´ ë°˜ë³µì„ false ì´ë©´ whileë¬¸ì„ ì¢…ë£Œ í•˜ê²Œ ëœë‹¤.
 		    	 */
 				Employee employee = new Employee();
 				employee.setEmployee_no(resultSet.getInt("employee_no"));
@@ -144,12 +143,12 @@ public class EmployeeDao {
 				list.add(employee);
 			}
 		
-		}catch(ClassNotFoundException e) { //¿¹¿ÜÃ³¸® Class.forName
+		}catch(ClassNotFoundException e) { //ì˜ˆì™¸ì²˜ë¦¬ Class.forName
 			e.printStackTrace();			
 		}catch(SQLException e) {// jdbc
 			e.printStackTrace();
 		}finally {
-			if(resultSet != null) try {resultSet.close();} catch(SQLException e) {} //¼ø¼­´ë·Î °¡Àå ´Ê°Ô ½ÇÇàµÈ °´Ã¼ºÎÅÍ ´İ¾ÆÁØ´Ù.
+			if(resultSet != null) try {resultSet.close();} catch(SQLException e) {} //ìˆœì„œëŒ€ë¡œ ê°€ì¥ ëŠ¦ê²Œ ì‹¤í–‰ëœ ê°ì²´ë¶€í„° ë‹«ì•„ì¤€ë‹¤.
 			if(statement != null) try{statement.close();} catch(SQLException e) {}
 			if(connection != null) try{connection.close();} catch(SQLException e) {}
 		}
@@ -158,38 +157,38 @@ public class EmployeeDao {
 	}
 	public void insertEmployee(Employee employee) {
 		/*
-		 * insertEmployee ¸Ş¼­µå´Â »õ·Î¿î Á÷¿ø¸¦ µî·ÏÇÏ´Â ¸Ş¼­µå.
-		 * void Å¸ÀÔÀÌ¹Ç·Î returnÀº ¾ø°í, Employee Å¬·¡½º¿¡ ¼ÂÆÃµÈ °ªÀ» ¸Å°³º¯¼ö°ªÀ¸·Î ¹Ş¾Æ¿Â´Ù.
+		 * insertEmployee ë©”ì„œë“œëŠ” ìƒˆë¡œìš´ ì§ì›ë¥¼ ë“±ë¡í•˜ëŠ” ë©”ì„œë“œ.
+		 * void íƒ€ì…ì´ë¯€ë¡œ returnì€ ì—†ê³ , Employee í´ë˜ìŠ¤ì— ì…‹íŒ…ëœ ê°’ì„ ë§¤ê°œë³€ìˆ˜ê°’ìœ¼ë¡œ ë°›ì•„ì˜¨ë‹¤.
 		 */	
 		try {
 			connection = Driver.dirverDbcon();
 			/* 
-		     * db¿¬°áÀ» À§ÇØ Driver Å¬·¡½ºÀÇ dirverDbcon ¸Ş¼­µå È£ÃâÇÑ´Ù .
+		     * dbì—°ê²°ì„ ìœ„í•´ Driver í´ë˜ìŠ¤ì˜ dirverDbcon ë©”ì„œë“œ í˜¸ì¶œí•œë‹¤ .
 		     */
 			
 			String sql = "INSERT INTO employee VALUES(?,?,?)";
 			statement = connection.prepareStatement(sql);
-			//connection °´Ã¼ ÂüÁ¶ º¯¼ö¿¡ ÇÒ´çµÈ ÂüÁ¶°ªÀ» Ã£¾Æ°¡ prepareStatement¸Ş¼­µå¸¦½ÇÇàÇÏ°í ÁØºñµÈ Äõ¸®¹®À» ÀÔ·ÂÇÑ´Ù.	
+			//connection ê°ì²´ ì°¸ì¡° ë³€ìˆ˜ì— í• ë‹¹ëœ ì°¸ì¡°ê°’ì„ ì°¾ì•„ê°€ prepareStatementë©”ì„œë“œë¥¼ì‹¤í–‰í•˜ê³  ì¤€ë¹„ëœ ì¿¼ë¦¬ë¬¸ì„ ì…ë ¥í•œë‹¤.	
 
 			statement.setInt(1, employee.getEmployee_no());
 			statement.setString(2, employee.getEmployee_id());
 			statement.setString(3, employee.getEmployee_pw());
 			/*
-		     * employee °´Ã¼ÂüÁ¶º¯¼ö¿¡ ÇÒ´çµÈ ÂüÁ¶°ªÀ» Ã£¾Æ°¡ getEmployee_no, getEmployee_id, getEmployee_pw ¸Ş¼­µå¸¦ È£ÃâÈÄ
-		     * return ¹ŞÀº °ªµéÀ» statment °´Ã¼ ÂüÁ¶ º¯¼ö¿¡ ÇÒ´çµÈ ÂüÁ¶°ªÀ» Ã£¾Æ°¡ PreparedStatement Å¬·¡½ºÀÇ setInt, setString ¸Ş¼­µå¸¦
-		     * È£Ãâ ÈÄ ¸Å°³º¯¼ö°ªÀ¸·Î ÁöÁ¤ÇÑ´Ù.
-		     * Äõ¸® ¿Ï¼º!
+		     * employee ê°ì²´ì°¸ì¡°ë³€ìˆ˜ì— í• ë‹¹ëœ ì°¸ì¡°ê°’ì„ ì°¾ì•„ê°€ getEmployee_no, getEmployee_id, getEmployee_pw ë©”ì„œë“œë¥¼ í˜¸ì¶œí›„
+		     * return ë°›ì€ ê°’ë“¤ì„ statment ê°ì²´ ì°¸ì¡° ë³€ìˆ˜ì— í• ë‹¹ëœ ì°¸ì¡°ê°’ì„ ì°¾ì•„ê°€ PreparedStatement í´ë˜ìŠ¤ì˜ setInt, setString ë©”ì„œë“œë¥¼
+		     * í˜¸ì¶œ í›„ ë§¤ê°œë³€ìˆ˜ê°’ìœ¼ë¡œ ì§€ì •í•œë‹¤.
+		     * ì¿¼ë¦¬ ì™„ì„±!
 		     */
 			
 			statement.executeUpdate();
-			//INSERT Äõ¸®¹® ÀÌ¹Ç·Î executeUpdate ¸Ş¼­µå¸¦ ½ÇÇàÇØ Äõ¸®¸¦ ½ÇÇà½ÃÄÑÁØ´Ù.
+			//INSERT ì¿¼ë¦¬ë¬¸ ì´ë¯€ë¡œ executeUpdate ë©”ì„œë“œë¥¼ ì‹¤í–‰í•´ ì¿¼ë¦¬ë¥¼ ì‹¤í–‰ì‹œì¼œì¤€ë‹¤.
 			
-		}catch(ClassNotFoundException e) { //¿¹¿ÜÃ³¸® Class.forName
+		}catch(ClassNotFoundException e) { //ì˜ˆì™¸ì²˜ë¦¬ Class.forName
 			e.printStackTrace();			
 		}catch(SQLException e) {// jdbc
 			e.printStackTrace();
 		}finally {
-			if(statement != null) try{statement.close();} catch(SQLException e) {} //¼ø¼­´ë·Î °¡Àå ´Ê°Ô ½ÇÇàµÈ °´Ã¼ºÎÅÍ ´İ¾ÆÁØ´Ù.
+			if(statement != null) try{statement.close();} catch(SQLException e) {} //ìˆœì„œëŒ€ë¡œ ê°€ì¥ ëŠ¦ê²Œ ì‹¤í–‰ëœ ê°ì²´ë¶€í„° ë‹«ì•„ì¤€ë‹¤.
 			if(connection != null) try{connection.close();} catch(SQLException e) {}
 		}
 	}

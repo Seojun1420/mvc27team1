@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import driver.Driver;
 
@@ -11,71 +12,107 @@ public class EmployeeAddrDao {
 	Connection connection = null;
 	PreparedStatement statement = null;
 	ResultSet resultSet = null;
-	public void insertEmployeeAddr(EmployeeAddr employeeaddr) {
+	public void addEmployeeAddr(EmployeeAddr employeeaddr) {
 		/*
-		 * insertEmployeeAddr ¸Ş¼­µå´Â ÁÖ¼Ò¸¦ Ãß°¡ÇÏ´Â ¸Ş¼­µå
-		 * void Å¸ÀÔÀÌ¹Ç·Î returnÀº ¾ø°í, Employee Å¬·¡½º¿¡ ¼ÂÆÃµÈ °ªÀ» ¸Å°³º¯¼ö°ªÀ¸·Î ¹Ş¾Æ¿Â´Ù.
+		 * insertEmployeeAddr ë©”ì„œë“œëŠ” ì£¼ì†Œë¥¼ ì¶”ê°€í•˜ëŠ” ë©”ì„œë“œ
+		 * void íƒ€ì…ì´ë¯€ë¡œ returnì€ ì—†ê³ , Employee í´ë˜ìŠ¤ì— ì…‹íŒ…ëœ ê°’ì„ ë§¤ê°œë³€ìˆ˜ê°’ìœ¼ë¡œ ë°›ì•„ì˜¨ë‹¤.
 		 */	
 		try {
 			connection = Driver.dirverDbcon();
 			/* 
-		     * db¿¬°áÀ» À§ÇØ Driver Å¬·¡½ºÀÇ dirverDbcon ¸Ş¼­µå È£ÃâÇÑ´Ù .
+		     * dbì—°ê²°ì„ ìœ„í•´ Driver í´ë˜ìŠ¤ì˜ dirverDbcon ë©”ì„œë“œ í˜¸ì¶œí•œë‹¤ .
 		     */
 			
 			String sql = "INSERT INTO employee_addr VALUES(?,?,?)";
 			statement = connection.prepareStatement(sql);
-			//connection °´Ã¼ ÂüÁ¶ º¯¼ö¿¡ ÇÒ´çµÈ ÂüÁ¶°ªÀ» Ã£¾Æ°¡ prepareStatement¸Ş¼­µå¸¦½ÇÇàÇÏ°í ÁØºñµÈ Äõ¸®¹®À» ÀÔ·ÂÇÑ´Ù.	
+			//connection ê°ì²´ ì°¸ì¡° ë³€ìˆ˜ì— í• ë‹¹ëœ ì°¸ì¡°ê°’ì„ ì°¾ì•„ê°€ prepareStatementë©”ì„œë“œë¥¼ì‹¤í–‰í•˜ê³  ì¤€ë¹„ëœ ì¿¼ë¦¬ë¬¸ì„ ì…ë ¥í•œë‹¤.	
 
 			statement.setInt(1, employeeaddr.getEmployeeAddrNo());
 			statement.setInt(2, employeeaddr.getEmployeeNo());
 			statement.setString(3, employeeaddr.getAddress());
 			/*
-		     * employeeaddr °´Ã¼ÂüÁ¶º¯¼ö¿¡ ÇÒ´çµÈ ÂüÁ¶°ªÀ» Ã£¾Æ°¡ getEmployAddrNo, getEmployNo, getAddress ¸Ş¼­µå¸¦ È£ÃâÈÄ
-		     * return ¹ŞÀº °ªµéÀ» statment °´Ã¼ ÂüÁ¶ º¯¼ö¿¡ ÇÒ´çµÈ ÂüÁ¶°ªÀ» Ã£¾Æ°¡ PreparedStatement Å¬·¡½ºÀÇ setInt, setString ¸Ş¼­µå¸¦
-		     * È£Ãâ ÈÄ ¸Å°³º¯¼ö°ªÀ¸·Î ÁöÁ¤ÇÑ´Ù.
-		     * Äõ¸® ¿Ï¼º!
+		     * employeeaddr ê°ì²´ì°¸ì¡°ë³€ìˆ˜ì— í• ë‹¹ëœ ì°¸ì¡°ê°’ì„ ì°¾ì•„ê°€ getEmployAddrNo, getEmployNo, getAddress ë©”ì„œë“œë¥¼ í˜¸ì¶œí›„
+		     * return ë°›ì€ ê°’ë“¤ì„ statment ê°ì²´ ì°¸ì¡° ë³€ìˆ˜ì— í• ë‹¹ëœ ì°¸ì¡°ê°’ì„ ì°¾ì•„ê°€ PreparedStatement í´ë˜ìŠ¤ì˜ setInt, setString ë©”ì„œë“œë¥¼
+		     * í˜¸ì¶œ í›„ ë§¤ê°œë³€ìˆ˜ê°’ìœ¼ë¡œ ì§€ì •í•œë‹¤.
+		     * ì¿¼ë¦¬ ì™„ì„±!
 		     */
 			
 			statement.executeUpdate();
-			//INSERT Äõ¸®¹® ÀÌ¹Ç·Î executeUpdate ¸Ş¼­µå¸¦ ½ÇÇàÇØ Äõ¸®¸¦ ½ÇÇà½ÃÄÑÁØ´Ù.
+			//INSERT ì¿¼ë¦¬ë¬¸ ì´ë¯€ë¡œ executeUpdate ë©”ì„œë“œë¥¼ ì‹¤í–‰í•´ ì¿¼ë¦¬ë¥¼ ì‹¤í–‰ì‹œì¼œì¤€ë‹¤.
 			
-		}catch(ClassNotFoundException e) { //¿¹¿ÜÃ³¸® Class.forName
+		}catch(ClassNotFoundException e) { //ì˜ˆì™¸ì²˜ë¦¬ Class.forName
 			e.printStackTrace();			
 		}catch(SQLException e) {// jdbc
 			e.printStackTrace();
 		}finally {
-			if(statement != null) try{statement.close();} catch(SQLException e) {} //¼ø¼­´ë·Î °¡Àå ´Ê°Ô ½ÇÇàµÈ °´Ã¼ºÎÅÍ ´İ¾ÆÁØ´Ù.
+			if(statement != null) try{statement.close();} catch(SQLException e) {} //ìˆœì„œëŒ€ë¡œ ê°€ì¥ ëŠ¦ê²Œ ì‹¤í–‰ëœ ê°ì²´ë¶€í„° ë‹«ì•„ì¤€ë‹¤.
 			if(connection != null) try{connection.close();} catch(SQLException e) {}
 		}
 	}
-	public int countEmployeeAddr(int employeeno) {
+	public int countEmployeeAddr(int employeeNo) {
 		int count = 0;
 		try {
 			connection = Driver.dirverDbcon();
 			/* 
-		     * db¿¬°áÀ» À§ÇØ Driver Å¬·¡½ºÀÇ dirverDbcon ¸Ş¼­µå È£ÃâÇÑ´Ù .
+		     * dbì—°ê²°ì„ ìœ„í•´ Driver í´ë˜ìŠ¤ì˜ dirverDbcon ë©”ì„œë“œ í˜¸ì¶œí•œë‹¤ .
 		     */
 			
 			String sql = "SELECT COUNT(employee_no) FROM employee_addr WHERE employee_no=?";
 			statement = connection.prepareStatement(sql);
 
-			statement.setInt(1, employeeno);
+			statement.setInt(1, employeeNo);
 			
+			resultSet = statement.executeQuery();
 			resultSet = statement.executeQuery();
 			if(resultSet.next()) {
 				count = resultSet.getInt(1);
 			}
 			
 			
-		}catch(ClassNotFoundException e) { //¿¹¿ÜÃ³¸® Class.forName
+		}catch(ClassNotFoundException e) { //ì˜ˆì™¸ì²˜ë¦¬ Class.forName
 			e.printStackTrace();			
 		}catch(SQLException e) {// jdbc
 			e.printStackTrace();
 		}finally {
 			if(resultSet != null) try{resultSet.close();} catch(SQLException e) {}
-			if(statement != null) try{statement.close();} catch(SQLException e) {} //¼ø¼­´ë·Î °¡Àå ´Ê°Ô ½ÇÇàµÈ °´Ã¼ºÎÅÍ ´İ¾ÆÁØ´Ù.
+			if(statement != null) try{statement.close();} catch(SQLException e) {} //ìˆœì„œëŒ€ë¡œ ê°€ì¥ ëŠ¦ê²Œ ì‹¤í–‰ëœ ê°ì²´ë¶€í„° ë‹«ì•„ì¤€ë‹¤.
 			if(connection != null) try{connection.close();} catch(SQLException e) {}
 		}
 		return count;
+	}
+	public ArrayList<EmployeeAddr>  selectEmployeeAddr(int employeeNo) {
+		ArrayList<EmployeeAddr> list = new ArrayList<EmployeeAddr>();
+		try {
+			connection = Driver.dirverDbcon();
+			/* 
+		     * dbì—°ê²°ì„ ìœ„í•´ Driver í´ë˜ìŠ¤ì˜ dirverDbcon ë©”ì„œë“œ í˜¸ì¶œí•œë‹¤ .
+		     */
+			
+			String sql = "SELECT employee_no, address FROM employee_addr WHERE employee_no=?";			
+			statement = connection.prepareStatement(sql);
+
+			statement.setInt(1, employeeNo);
+			
+			resultSet = statement.executeQuery();
+			EmployeeAddr employeeAddr = null;
+			while(resultSet.next()) {
+				employeeAddr = new EmployeeAddr();
+				employeeAddr.setEmployeeNo(resultSet.getInt("employee_no"));
+				employeeAddr.setAddress(resultSet.getString("address"));
+				list.add(employeeAddr);
+				System.out.println(employeeAddr.getAddress()+"<--ì£¼ì†Œì¶œë ¥");
+			}
+			
+			
+		}catch(ClassNotFoundException e) { //ì˜ˆì™¸ì²˜ë¦¬ Class.forName
+			e.printStackTrace();			
+		}catch(SQLException e) {// jdbc
+			e.printStackTrace();
+		}finally {
+			if(resultSet != null) try{resultSet.close();} catch(SQLException e) {}
+			if(statement != null) try{statement.close();} catch(SQLException e) {} //ìˆœì„œëŒ€ë¡œ ê°€ì¥ ëŠ¦ê²Œ ì‹¤í–‰ëœ ê°ì²´ë¶€í„° ë‹«ì•„ì¤€ë‹¤.
+			if(connection != null) try{connection.close();} catch(SQLException e) {}
+		}
+		return list;
 	}
 }

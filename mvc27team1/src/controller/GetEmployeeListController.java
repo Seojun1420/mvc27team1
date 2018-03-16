@@ -15,14 +15,14 @@ import java.util.ArrayList;
 public class GetEmployeeListController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//¸®½ºÆ®È­¸é Ãâ·Â ¿äÃ»ÀÌ µé¾î¿À¸é
+		//ë¦¬ìŠ¤íŠ¸í™”ë©´ ì¶œë ¥ ìš”ì²­ì´ ë“¤ì–´ì˜¤ë©´
 		request.setCharacterEncoding("UTF-8");
-		System.out.println("GetEmployeeListController doGet ¸Ş¼­µå ½ÇÇà");
+		System.out.println("GetEmployeeListController doGet ë©”ì„œë“œ ì‹¤í–‰");
 		EmployeeDao employeeDao = new EmployeeDao();
 		ArrayList<Employee> list = employeeDao.selectEmployee();
-		//selectEmployee ¸Ş¼­µå¸¦ ½ÇÇàÈÄ ÀüÃ¼ È¸¿ø ¸®½ºÆ®¸¦ ArrayList list·Î ¹Ş´Â´Ù.
-		request.setAttribute("Employee", list);
+		//selectEmployee ë©”ì„œë“œë¥¼ ì‹¤í–‰í›„ ì „ì²´ íšŒì› ë¦¬ìŠ¤íŠ¸ë¥¼ ArrayList listë¡œ ë°›ëŠ”ë‹¤.
+		request.setAttribute("list", list);
 		request.getRequestDispatcher("/WEB-INF/views/getEmployeeList.jsp").forward(request, response);
-		//reqest°´Ã¼¿¡ list¸¦  ´ã¾Æ forward½ÃÅ²´Ù.
+		//reqestê°ì²´ì— listë¥¼  ë‹´ì•„ forwardì‹œí‚¨ë‹¤.
 	}
 }
