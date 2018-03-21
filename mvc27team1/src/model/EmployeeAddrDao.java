@@ -12,6 +12,35 @@ public class EmployeeAddrDao {
 	Connection connection = null;
 	PreparedStatement statement = null;
 	ResultSet resultSet = null;
+	
+	public void removeEmployeeAddr(int[] intarr) {
+		System.out.println("03_03 삭제처리");
+		Connection connection = null;
+		PreparedStatement statement = null;
+		try {
+			connection = Driver.dirverDbcon();
+			/* 
+		     * db연결을 위해 Driver 클래스의 dirverDbcon 메서드 호출한다 .
+		     */
+			String sql = "DELETE FROM employee_addr WHERE employee_addr_no=?";
+			for(int i=0; i<intarr.length; i++) {
+				
+				statement = connection.prepareStatement(sql);
+				statement.setInt(1, intarr[i]);
+				statement.executeUpdate();
+				System.out.println(intarr[i] + "<--- intarr[i]");
+			}
+			
+		
+		}catch(ClassNotFoundException e) { //예외처리 Class.forName
+			e.printStackTrace();			
+		}catch(SQLException e) {// jdbc
+			e.printStackTrace();
+		}finally {
+			if(statement != null) try{statement.close();} catch(SQLException e) {} //순서대로 가장 늦게 실행된 객체부터 닫아준다.
+			if(connection != null) try{connection.close();} catch(SQLException e) {}
+		}
+	}
 	public void addEmployeeAddr(EmployeeAddr employeeaddr) {
 		/*
 		 * insertEmployeeAddr 메서드는 주소를 추가하는 메서드
@@ -49,6 +78,7 @@ public class EmployeeAddrDao {
 			if(connection != null) try{connection.close();} catch(SQLException e) {}
 		}
 	}
+	
 	public int countEmployeeAddr(int employeeNo) {
 		int count = 0;
 		try {
@@ -63,7 +93,7 @@ public class EmployeeAddrDao {
 			statement.setInt(1, employeeNo);
 			
 			resultSet = statement.executeQuery();
-			resultSet = statement.executeQuery();
+			
 			if(resultSet.next()) {
 				count = resultSet.getInt(1);
 			}
@@ -88,7 +118,7 @@ public class EmployeeAddrDao {
 		     * db연결을 위해 Driver 클래스의 dirverDbcon 메서드 호출한다 .
 		     */
 			
-			String sql = "SELECT employee_no, address FROM employee_addr WHERE employee_no=?";			
+			String sql = "SELECT employee_addr_no, employee_no, address FROM employee_addr WHERE employee_no=?";			
 			statement = connection.prepareStatement(sql);
 
 			statement.setInt(1, employeeNo);
@@ -97,10 +127,10 @@ public class EmployeeAddrDao {
 			EmployeeAddr employeeAddr = null;
 			while(resultSet.next()) {
 				employeeAddr = new EmployeeAddr();
+				employeeAddr.setEmployeeAddrNo(resultSet.getInt("employee_addr_no"));
 				employeeAddr.setEmployeeNo(resultSet.getInt("employee_no"));
 				employeeAddr.setAddress(resultSet.getString("address"));
 				list.add(employeeAddr);
-				System.out.println(employeeAddr.getAddress()+"<--주소출력");
 			}
 			
 			
