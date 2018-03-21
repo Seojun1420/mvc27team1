@@ -13,7 +13,7 @@ import model.TeacherAddr;
 import model.TeacherAddrDao;
 
 
-@WebServlet("/GetTeacherAddrListController")
+@WebServlet("/getTeacherAddrList.jjdev")
 public class GetTeacherAddrListController extends HttpServlet {
 
   

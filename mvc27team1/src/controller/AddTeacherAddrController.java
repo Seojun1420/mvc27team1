@@ -24,9 +24,9 @@ public class AddTeacherAddrController extends HttpServlet {
 		TeacherAddrDao teacherAddrDao =new TeacherAddrDao();
 		int count=teacherAddrDao.countTeacherAddr(teacherNo);
 		
-		if(count>=2) {
+		if(count>=5) {
 			request.setAttribute("teacherNo", teacherNo);
-			request.getRequestDispatcher("/GetTeacherAddrListController").forward(request, response);
+			request.getRequestDispatcher("/getTeacherAddrList.jjdev").forward(request, response);
 		}else {
 			System.out.println("등록가능");
 			teacherAddr.setTeacherNo(teacherNo);
