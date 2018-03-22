@@ -1,13 +1,21 @@
 <!-- mvc27team1 도정만  -->
+
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="model.Employee" %>
-<%@ page import="java.util.ArrayList" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<title>Insert title here</title>
+	<script>
+		$(document).ready(function() {			
+			console.log("j쿼리시작");
+			if(${result} == 0){
+				alert("주소가등록되어 삭제할수 없습니다. 등록된주소를 모두 제거후 등록해주세요");
+			}
+		})
+	</script>
 </head>
 <body>
 	<table border="1">
@@ -21,24 +29,18 @@
 				<th>ADD EMPLOYEE_ADD</th>
 			</tr>
 		</thead>
-<%
-	ArrayList<Employee> list = (ArrayList<Employee>) request.getAttribute("list");	
-	for(Employee employee : list) {		
-%>
-			
 		<tbody>
-			<tr>
-				<td><%= employee.getEmployee_no() %></td>
-				<td><%= employee.getEmployee_id() %></td>
-				<td>****</td>
-				<td><a href="<%= request.getContextPath()%>/modifyEmployee.jjdev?employeeNo=<%=employee.getEmployee_no()%>">수정</a></td>
-				<td><a href="<%= request.getContextPath()%>/removeEmployee.jjdev?employeeNo=<%=employee.getEmployee_no()%>">삭제</a></td>
-				<td><a href="<%= request.getContextPath()%>/addAddressEmployee.jjdev?employeeNo=<%=employee.getEmployee_no()%>">주소추가</a></td>								
-			</tr>
+			<c:forEach var="employee" items="${list}">
+				<tr>
+					<td>${employee.employee_no}</td>
+					<td>${employee.employee_id}</td>
+					<td>****</td>
+					<td><a href="${pageContext.request.contextPath}/modifyEmployee.jjdev?employeeNo=${employee.employee_no}">수정</a></td>
+					<td><a href="${pageContext.request.contextPath}/removeEmployee.jjdev?employeeNo=${employee.employee_no}">삭제</a><span class="rHelper"></span></td>
+					<td><a href="${pageContext.request.contextPath}/addAddressEmployee.jjdev?employeeNo=${employee.employee_no}">주소추가</a></td>								
+				</tr>
+			</c:forEach>			
 		</tbody>				
-<% 			
-	}
-%>
 	</table>
 </body>
 </html>

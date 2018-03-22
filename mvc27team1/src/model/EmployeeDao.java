@@ -54,11 +54,13 @@ public class EmployeeDao {
 		}
 		return employee;
 	}
-	public void deleteEmployee(int employeeNo) {
+	public int removeEmployee(int employeeNo) {
 		/*
 		 * deleteEmployee 메서드는 회원삭제를 하는 메서드
+		 * 삭제가 성공하게되면 1을 return하게되고 실패하면 0을 return 한다.
 		 * 매개변수로 int형 타입의 employeeNo를 받아서 해당 employeeNo의 모든정보를 삭제한다
 		 */
+		int result = 0;
 		try {
 			connection = Driver.dirverDbcon();
 			
@@ -69,17 +71,21 @@ public class EmployeeDao {
 			statement.setInt(1, employeeNo);
 			//쿼리 완성
 			
-			statement.executeUpdate();
+			result = statement.executeUpdate();
 			//DELETE 쿼리문 이므로 executeUpdate 메서드를 실행해 쿼리를 실행시켜준다.
-			
+			System.out.println("에라1");
 		}catch(ClassNotFoundException e) { //예외처리 Class.forName
 			e.printStackTrace();			
 		}catch(SQLException e) {// jdbc
+			System.out.println("에라2");
 			e.printStackTrace();
+			return result;
 		}finally {
+			System.out.println("에라3");
 			if(statement != null) try{statement.close();} catch(SQLException e) {} //순서대로 가장 늦게 실행된 객체부터 닫아준다.
 			if(connection != null) try{connection.close();} catch(SQLException e) {}
 		}
+		return result;
 	}
 	public void updateEmployee(Employee employee) {
 		/*

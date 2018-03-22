@@ -14,13 +14,17 @@ public class RemoveEmployeeController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		System.out.println("DeleteEmployeeController doGet ¸Þ¼­µå ½ÇÇà");
+		System.out.println("DeleteEmployeeController doGet 실행");
 		int employeeNo = Integer.parseInt(request.getParameter("employeeNo"));
-		System.out.println(employeeNo+"<--- ³Ñ°Ü¹ÞÀº employeeNo");
+		System.out.println(employeeNo+"<---  employeeNo");
 		EmployeeDao employeedao = new EmployeeDao();
-		employeedao.deleteEmployee(employeeNo);
+		int result = employeedao.removeEmployee(employeeNo);
+		request.setAttribute("result", result);
+		System.out.println("3-1 에라");
+		System.out.println(result+"result");		
 		
-		response.sendRedirect(request.getContextPath() + "/getEmployeeList.jjdev");
+		request.getRequestDispatcher("/getEmployeeList.jjdev").forward(request, response);
+		/*response.sendRedirect(request.getContextPath() + "/getEmployeeList.jjdev");*/
 	}
 
 }

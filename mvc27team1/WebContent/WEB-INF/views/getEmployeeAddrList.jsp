@@ -1,5 +1,6 @@
 <!-- mvc27team1 도정만  -->
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="model.EmployeeAddr" %>
 <%@ page import="java.util.ArrayList" %>
 <!DOCTYPE html>
@@ -28,7 +29,7 @@
 	<title>Insert title here</title>
 </head>
 <body>
-	<form id="form" action="<%= request.getContextPath() %>/removeEmployeeAddr.jjdev" method="post">
+	<form id="form" action="${pageContext.request.contextPath}/removeEmployeeAddr.jjdev" method="post">
 	<table border="1">
 		<thead>
 			<tr>
@@ -37,31 +38,17 @@
 				<th>주소</th>
 			</tr>
 		</thead>
-
-<%
-	ArrayList<EmployeeAddr> list = (ArrayList<EmployeeAddr>)request.getAttribute("list");
-
-	for(EmployeeAddr employeeAddr : list) {		
-%>			
-		
-			<tbody>
+		<tbody>
+		<c:forEach var="employeeAddr" items="${list}">					
 			<tr>
-				<td><input type="checkbox" name="check" value="<%= employeeAddr.getEmployeeAddrNo() %>"></td>
-				<td><%= employeeAddr.getEmployeeNo() %></td>
-				<td><%= employeeAddr.getAddress() %></td>						
-			</tr>
-			</tbody>	
-		
-					
-<% 			
-	}
-%>
-		<tr>
-
-				<button type="button" class="btn">삭제하기</button>
-
-		</tr>
+				<td><input type="checkbox" name="check" value="${employeeAddr.employeeAddrNo}"></td>
+				<td>${employeeAddr.employeeNo} </td>
+				<td>${employeeAddr.address} </td>					
+			</tr>			
+		</c:forEach>				
+		</tbody>		
 	</table>
+	<button type="button" class="btn">삭제하기</button>
 	</form>
 </body>
 </html>
