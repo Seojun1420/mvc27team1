@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<%@page import="model.TeacherAddr" %>
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -12,7 +12,7 @@
 	<div class="col-sm-3"></div>
 	<div class="col-sm-6">
 		<h1 style="text-align:center;">AddAdressTeacher</h1>
-		<form action="<%=request.getContextPath()%>/addAdressTeacher.jjdev" method="post">
+		<form action="${pageContext.request.contextPath}/addAdressTeacher.jjdev" method="post">
 			<table class="table table-striped">
 				<thead>
 					<tr>
@@ -20,14 +20,10 @@
 						<td>주소</td>
 					</tr>
 				</thead>
-				<%
-					TeacherAddr teacherAddr = (TeacherAddr)request.getAttribute("teacherAddr");
-					
-				%>
 				<tbody>
-					<input type="hidden" name="teacherNo" value=<%=teacherAddr.getTeacherNo()%>>
+					<input type="hidden" name="teacherNo" value="${teacherAddr.teacherNo}">
 					<tr>
-						<td><%=teacherAddr.getTeacherNo() %></td>
+						<td>${teacherAddr.teacherNo}</td>
 						<td><input type="text" name="address"></td>
 					</tr>
 					<tr>

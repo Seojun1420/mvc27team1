@@ -123,24 +123,31 @@ public class TeacherDao {
 			if(connection != null) try {connection.close();} catch(SQLException e) {}
 		}
 	}
-	public void deleteTeacher(int TeacherNo) {
+	public int deleteTeacher(int TeacherNo) {
 		Connection connection=null;
 		PreparedStatement statement=null;
 		System.out.println("deleteTeacher 실행");
 		String sql = "DELETE FROM teacher WHERE teacher_no=?";
+		int result=0;
 		try {
 			connection=Driver.dirverDbcon();
 			statement=connection.prepareStatement(sql);
 			statement.setInt(1, TeacherNo);
-			statement.executeUpdate();	
+			result=statement.executeUpdate();	
 		}catch(ClassNotFoundException e) {
 			e.printStackTrace();
 		}catch(SQLException e) {
 			e.printStackTrace();
+			System.out.println("1");
+			return result;
 		}
 		finally {
+			System.out.println("2");
 			if(statement !=null) try {statement.close();} catch(SQLException e) {}
 			if(connection != null) try {connection.close();} catch(SQLException e) {}
+			System.out.println("3");
 		}
+		System.out.println("4");
+		return result;
 	}
 }

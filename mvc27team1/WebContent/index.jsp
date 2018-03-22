@@ -4,3 +4,10 @@
 	response.sendRedirect(request.getContextPath()+"/getTeacherList.jjev");
 
 %>
+<%-- 1. jsp 지시자 :<%@%>
+2. jsp 표현식 :<%=%>
+ EL사용
+ <%=request.getAttribute("x")%> ->${x}
+ <%=session.getAttribute("y")%> ->${y}
+ <%=m.getNo()%> ->${m.no} --%>
+ 

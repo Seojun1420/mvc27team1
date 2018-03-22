@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<%@page import="java.util.Set"%>
-<%@page import="model.TeacherAddr" %>
-<%@page import="java.util.ArrayList" %>
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -26,7 +24,7 @@
 	<div class="col-sm-3"></div>
 	<div class="col-sm-6" >
 		<h1 style="text-align:center;">GetTeacher List</h1>
-		<form action="<%=request.getContextPath()%>/removeTeacherAddr.jjdev" method="post">
+		<form action="${pageContext.request.contextPath}/removeTeacherAddr.jjdev" method="post">
 			<table class="table table-striped">
 				<thead>
 					<tr>
@@ -35,20 +33,15 @@
 						<th>Address</th>
 					</tr>
 				</thead>
-			<%
-				ArrayList<TeacherAddr> arrayList=(ArrayList<TeacherAddr>)(request.getAttribute("arrayList"));
-				for(TeacherAddr teacherAddr:arrayList){
-			%>
+			<c:forEach var="teacherAddr" items="${arrayList}">
 					<tbody>
 						<tr>
-							<td><input type="checkbox" name="check" size="1" value=<%=teacherAddr.getTeacherAddrNo()%>><td>
-							<td><%=teacherAddr.getTeacherNo() %></td>
-							<td><%=teacherAddr.getAddress() %></td>
+							<td><input type="checkbox" name="check" size="1" value="${teacherAddr.teacherAddrNo}"><td>
+							<td>${teacherAddr.teacherNo}</td>
+							<td>${teacherAddr.address}</td>
 						</tr>	
 					</tbody>
-			<%
-				}
-			%>
+			</c:forEach>
 			</table>
 			<input type="submit" value="삭제">
 		</form>
