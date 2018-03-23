@@ -42,5 +42,17 @@
 			</c:forEach>			
 		</tbody>				
 	</table>
+	<c:if test="${curruntPage > 1}">
+		<a href="${pageContext.request.contextPath}/getEmployeeList.jjdev?curruntPage=${1}">처음으로</a>
+		<a href="${pageContext.request.contextPath}/getEmployeeList.jjdev?curruntPage=${curruntPage-1}">이전</a>
+	</c:if>
+	<c:if test="${curruntPage < 5}">
+		<a href="${pageContext.request.contextPath}/getEmployeeList.jjdev?curruntPage=${curruntPage+1}">다음</a>
+		<a href="${pageContext.request.contextPath}/getEmployeeList.jjdev?curruntPage=${curruntPage}">마지막으로</a>
+	</c:if>	
+		
+
+	
+	
 </body>
 </html>

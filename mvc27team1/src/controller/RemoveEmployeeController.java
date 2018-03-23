@@ -24,7 +24,6 @@ public class RemoveEmployeeController extends HttpServlet {
 		System.out.println(result+"result");		
 		
 		request.getRequestDispatcher("/getEmployeeList.jjdev").forward(request, response);
-		/*response.sendRedirect(request.getContextPath() + "/getEmployeeList.jjdev");*/
 	}
 
 }

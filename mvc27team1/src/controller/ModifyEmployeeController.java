@@ -21,7 +21,7 @@ public class ModifyEmployeeController extends HttpServlet {
 		System.out.println(employeeNo+"<--- 넘겨받은 employeeNo");
 		//list에서 수정버튼을 누르면 get방식으로 employeeNo값이 넘어온다.
 		EmployeeDao employeedao = new EmployeeDao();
-		Employee employee = employeedao.employeeSelectForUpdate(employeeNo);
+		Employee employee = employeedao.employeeSelect(employeeNo);
 		//employeeSelectForUpdate 메서드를 통해 넘겨받은 employeeNo의 정보를 return 받아 employee객체에 담는다.
 		request.setAttribute("employee", employee);
 		request.getRequestDispatcher("/WEB-INF/views/modifyEmployeeForm.jsp").forward(request, response);

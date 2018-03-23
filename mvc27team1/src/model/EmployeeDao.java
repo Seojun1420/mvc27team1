@@ -11,8 +11,33 @@ public class EmployeeDao {
 	PreparedStatement statement = null;
 	ResultSet resultSet = null;
 	Employee employee = null;
+	
+	public int employeeRowCount() {
+		System.out.println("employeeRowCount 메서드");
+		int count = 0;
+		/*
+		 * SELECT count(*) FROM employee
+		 */
+		String sql = "SELECT count(*) FROM employee";
+		try {
+			connection = Driver.dirverDbcon();
+			statement = connection.prepareStatement(sql);
+			resultSet = statement.executeQuery();
+			if(resultSet.next()) {
+				count = resultSet.getInt(1);
+				System.out.println(count+"<-- 카운트값");
+			}
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return count;
+	}
 
-	public Employee employeeSelectForUpdate(int employeeNo) {
+	public Employee employeeSelect(int employeeNo) {
 		/*
 		 * employeeSelectForUpdate 메서드는 회원수정버튼을 눌럿을때 정보를 form화면으로 뿌려주기위해 한명의회원정보를 select하기 위한 메서드
 		 * Employee 클래스 타입의 employee를 리턴하고, 매개변수로 int형 타입의 employeeNo를 받는다.
@@ -116,7 +141,12 @@ public class EmployeeDao {
 			if(connection != null) try{connection.close();} catch(SQLException e) {}
 		}
 	}
-	public ArrayList<Employee> selectEmployee() {
+	/*
+	 * 매개변수 int startRow -> 셀렉트결과물의 시작행
+	 * 매개변수 int pageperRow -> select결과물 갯수
+	 * return : Employee List
+	 */
+	public ArrayList<Employee> selectEmployee(int startRow, int pagePerRow) {
 		/*
 		 * selectEmployee 메서드는 db에 저장된 직원의 id와 pw를 보여 주는 메서드.
 		 * Employee 클래스 타입의 ArrayList를 리턴한다.
@@ -129,8 +159,10 @@ public class EmployeeDao {
 			/* 
 		     * db연결을 위해 Driver 클래스의 dirverDbcon 메서드 호출한다 .
 		     */
-			String sql = "SELECT employee_no,employee_id FROM employee";
+			String sql = "SELECT employee_no,employee_id FROM employee LIMIT ?, ?";
 			statement = connection.prepareStatement(sql);			
+			statement.setInt(1, startRow);
+			statement.setInt(2, pagePerRow);
 			//connection 객체 참조 변수에 할당된 참조값을 찾아가 prepareStatement메서드를실행하고 준비된 쿼리문을 입력한다.	
 			
 			resultSet = statement.executeQuery();			
