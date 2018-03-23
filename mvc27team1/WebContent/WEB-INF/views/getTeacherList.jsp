@@ -45,10 +45,12 @@
 			</c:forEach>
 		</table>
 		<c:if test="${currentPage>1}">
+			<a href ="${pageContext.request.contextPath}/getTeacherList.jjev?currentPage=1">처음으로</a>
 			<a href ="${pageContext.request.contextPath}/getTeacherList.jjev?currentPage=${currentPage-1}">이전</a>
 		</c:if>
 		<c:if test="${currentPage<lastPage}">
-		<a href ="${pageContext.request.contextPath}/getTeacherList.jjev?currentPage=${currentPage+1}">다음</a>
+			<a href ="${pageContext.request.contextPath}/getTeacherList.jjev?currentPage=${currentPage+1}">다음</a>
+			<a href ="${pageContext.request.contextPath}/getTeacherList.jjev?currentPage=${lastPage}">마지막페이지로</a>
 		</c:if>
 	</div>
 	<div class="col-sm-3"></div>

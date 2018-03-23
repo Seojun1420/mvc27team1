@@ -20,7 +20,7 @@ public class GetTeacherListController extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		this.teacherDao = new TeacherDao();
 		
-		int pageRerRow = 10;
+		int pageRerRow = 2;
 		int currentPage = 1;
 		if(request.getParameter("currentPage")!=null) {
 			currentPage = (Integer.parseInt(request.getParameter("currentPage")));
