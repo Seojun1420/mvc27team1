@@ -34,19 +34,51 @@ public class TeacherDao {
 			if(connection != null) try {connection.close();} catch(SQLException e) {}
 		}
 	}
-	//ID,PW 를 입력한뒤 등록 버튼을 눌르면 LIST 가 나와야하기때문에 SELECT 해줄 메서드가 필요하다
-	//리턴타입은 여러 리스트들을 (Teacher)받아야하 하므로 ArrayList<Teacher> 매개변수는 없다
-	public ArrayList<Teacher> selectTeacher() {
+	public int teacherRowCount() {
+		Connection connection=null;
+		PreparedStatement statement=null;
+		ResultSet resultSet =null;
+		int count=0;
+		String sql = "SELECT COUNT(*) AS count FROM teacher";
+		try {
+			connection=Driver.dirverDbcon();
+			statement=connection.prepareStatement(sql);
+			resultSet=statement.executeQuery();
+			if(resultSet.next()) {
+				count=resultSet.getInt("count");
+			}
+		}catch(ClassNotFoundException e) {
+			e.printStackTrace();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		//예외가 발생하거나  finally 의 if 문에 있는 조건이 참이되면 try에가 close()메서드를 실행해 끝내준다. 
+		finally {
+			if(resultSet != null) try {resultSet.close();} catch(SQLException e) {}
+			if(statement != null) try {statement.close();} catch(SQLException e) {}
+			if(connection != null) try {connection.close();} catch(SQLException e) {}
+			}
+		return count;
+	}
+	
+	/*
+	 * ID,PW 를 입력한뒤 등록 버튼을 눌르면 LIST 가 나와야하기때문에 SELECT 해줄 메서드가 필요하다
+	 * 리턴타입은 여러 리스트들을 (Teacher)받아야하 하므로 ArrayList<Teacher> int 매개변수 startRow ->select 결과물의 시작행
+	 * 
+	 */
+	public ArrayList<Teacher> selectTeacher(int currentPage,int pageRerRow) {
 		Connection connection=null;
 		PreparedStatement statement=null;
 		ResultSet resultSet =null;
 		System.out.println("selectTeacher 실행");
 		ArrayList<Teacher> arrayList = new ArrayList<Teacher>();
-		String sql = "SELECT teacher_no,teacher_id FROM teacher";
+		String sql = "SELECT teacher_no,teacher_id FROM teacher LIMIT ?,?";
 		try {
 			//DB를 연결하고 SQL 쿼리를 준비 및 실행을 해준다.
 			connection=Driver.dirverDbcon();
 			statement=connection.prepareStatement(sql);
+			statement.setInt(1, currentPage);
+			statement.setInt(2, pageRerRow);
 			resultSet=statement.executeQuery();
 			//next() 메서드로 데이터베이스에 있는 컬럼을 한줄씩 읽어와 Teacher 객체에 셋팅해준다. 그리고 ArrayList에 add 해준다.
 			while(resultSet.next()) {

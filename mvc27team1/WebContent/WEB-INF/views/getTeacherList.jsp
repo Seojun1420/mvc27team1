@@ -14,7 +14,7 @@
 	         }
 	      })
 	   </script>
-	<title>getTeacherList</title>
+	<title>getTeache rList</title>
 </head>
 <body>
 	<div class="col-sm-3"></div>
@@ -38,12 +38,18 @@
 						<td>${teacher.teacher_id}</td>
 						<td>****</td>
 						<td><a href="${pageContext.request.contextPath}/modifyTeacher.jjdev?teacherNo=${teacher.teacher_no}">수정</a></td>
-						<td><a href="${pageContext.request.contextPath}/removeTeacher.jjdev?teacherNo=${teacher.teacher_no}" id="deleteClick" name="deleteClick">삭제</a></td>
+						<td><a href="${pageContext.request.contextPath}/removeTeacher.jjdev?teacherNo=${teacher.teacher_no}">삭제</a></td>
 						<td><span><a href="${pageContext.request.contextPath}/addAdressTeacher.jjdev?teacherNo=${teacher.teacher_no}">주소추가</a></span></td>
 					</tr>
 				</tbody>
 			</c:forEach>
 		</table>
+		<c:if test="${currentPage>1}">
+			<a href ="${pageContext.request.contextPath}/getTeacherList.jjev?currentPage=${currentPage-1}">이전</a>
+		</c:if>
+		<c:if test="${currentPage<lastPage}">
+		<a href ="${pageContext.request.contextPath}/getTeacherList.jjev?currentPage=${currentPage+1}">다음</a>
+		</c:if>
 	</div>
 	<div class="col-sm-3"></div>
 </body>
